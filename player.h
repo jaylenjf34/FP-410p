@@ -17,6 +17,36 @@
  */
 
 
+ class Pack
+ {
+
+
+  public:
+
+   Pack();
+   void use_axe();
+	 bool has_axe();
+	 void add_axe();
+	 void use_pickaxe();
+	 void add_pickaxe();
+	 bool has_pickaxe();
+ 	 int add_binoculars();
+	 bool has_binoculars();
+
+	 
+
+
+
+    protected:
+		bool axe;  // value to determine whether a user has an axe or not
+		bool pick_axe;// value to determine whether player has a pickaxe or not
+		bool binoculars;
+
+
+
+ };
+
+
 class player
 {
 
@@ -56,16 +86,14 @@ class player
 		bool has_binoculars();
 
 	protected:
+
+	  Pack MyPack;
 		int energy; // player life
 		int whiffle; // player currency
 		int curr_grov; // current type of grovnik that the player is on
-		bool axe;  // value to determine whether a user has an axe or not
-		int axe_type; // type of axe the player has
-		bool pick_axe;// value to determine whether player has a pickaxe or not
 		bool ship; // used for adding ship to player's objects
 		int diamonds; // used to store the number of player's diamonds
     int grov_obj;
-		bool binoculars;
 
 
 
