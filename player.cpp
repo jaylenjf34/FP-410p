@@ -6,18 +6,81 @@
 
 using namespace std;
 
+
+
+
+Pack :: Pack ()
+{
+
+ axe = false; 
+ binoculars = false;
+ pick_axe = false;
+
+
+
+}
+
+
+
+void Pack :: use_axe()
+{
+  axe = false;
+
+}
+bool Pack :: has_axe()
+{
+
+  return axe;
+
+}
+void  Pack :: add_axe()
+{
+
+  axe = true;
+}
+
+
+
+void Pack ::  use_pickaxe()
+{
+  pick_axe = false;
+
+}
+
+void Pack :: add_pickaxe()
+{
+  pick_axe = true;
+
+}
+
+bool Pack :: has_pickaxe()
+{
+  return pick_axe;
+
+}
+
+int Pack :: add_binoculars()
+{
+  binoculars = true;
+  return 1;
+
+}
+
+
+bool Pack :: has_binoculars()
+{
+  return binoculars;
+
+}
+
 // sets starter values for the player
 player :: player ( int e, int w, bool a, int a_t, int g)
 {
 	energy = e;
 	whiffle = w;
-	axe = a;
-	axe_type = a_t;
 	curr_grov = g;
 	ship = false;
-	binoculars = false;
 	diamonds = 0;
-	pick_axe = false;
 }
 
 // changes the energy that the player has.
@@ -92,7 +155,7 @@ int player :: change_grovnik(int type)
 // player picks up an axe types is passed in as an int
 int player :: pickup_axe()
 {
-	axe = true;
+	MyPack.add_axe();
 	return 1;
 }
 
@@ -102,7 +165,7 @@ int player :: use_axe(int e_used, int div)
 {
 	e_used = e_used / div; // caluclate energy to remove
 	remove_energy(e_used); // remove energy from axe use
-	axe = false; 
+	MyPack.use_axe();
 	return 1;
 }
 
@@ -146,14 +209,9 @@ int player :: ret_grovnik()
 // determines whether the player has an axe or not
 bool player :: has_axe()
 {
-	return axe;
+	return MyPack.has_axe();
 }
 
-// returns what axe type we have.
-int player :: ret_axe_type()
-{
-	return axe_type;
-}
 
 bool player::handle_movement(char terrain)
 {
@@ -191,7 +249,7 @@ bool player::handle_movement(char terrain)
 // function for changing the binoculars value
 int player :: add_binoculars()
 {
-	binoculars = true;
+	MyPack.add_binoculars();
 	return 1;
 }
 
@@ -200,13 +258,13 @@ int player :: add_binoculars()
 // true means we do have binoculars
 bool player :: has_binoculars()
 {
-	return binoculars;
+	return MyPack.has_binoculars();
 }
 
 
 int player :: pickup_pick_axe()
 {
-	pick_axe = true;
+	MyPack.add_pickaxe();
 	return 1;
 }
 
@@ -215,12 +273,12 @@ int player :: use_pick_axe(int e_used, int div)
 {
 	e_used = e_used / div;
 	remove_energy(e_used);
-	pick_axe = false;
+	MyPack.use_pickaxe();
 	return 1;
 }
 
 // function to determine if the player has a pick_axe
 bool player :: has_pick_axe()
 {
-  return pick_axe;
+  return MyPack.has_pickaxe();
 }
