@@ -41,8 +41,8 @@ class player
 		int ret_grov_obj();
 
 	protected:
-		int energy; // player life
-		int whiffle; // player currency
+		int energy; // used to store the amount of player life
+		int whiffle; // used to store the amount of player currency
 		int curr_grov; // current type of grovnik that the player is on
 		bool axe;  // value to determine whether a user has an axe or not
 		int axe_type; // type of axe the player has
