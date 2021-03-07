@@ -60,7 +60,7 @@ int player :: remove_whiffle (int val)
 }
 
 // function to determine if the player has dies or not
-bool player :: dead ()
+bool player :: is_dead ()
 {
 	if(energy <= 0) // player is dead
 	{

@@ -19,7 +19,7 @@ class player
 		int remove_energy(int); // removes energy from the player
 		int add_whiffle(int); // adds currency to the player
 		int remove_whiffle(int); // removes currency from the player
-		bool dead (); // function that checks whether the user is dead or not
+		bool is_dead (); // function that checks whether the user is dead or not
 		int change_grovnik(int); // update current grovnik type 
 		int pickup_axe(); // lets a player pickup an axe
 		int pickup_pick_axe(); // lets player pickup pick_axe

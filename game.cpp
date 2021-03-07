@@ -141,7 +141,7 @@ void Game::play(bool debug)
   menu.update(&curGrov, &hero);
 	menu.render(menuWindow);
 
-	while (ch != 'q' && !hero.dead() && hero.ret_diamonds() < 4) // Runs until 'q' is entered or hero is dead
+	while (ch != 'q' && !hero.is_dead() && hero.ret_diamonds() < 4) // Runs until 'q' is entered or hero is dead
 	{
 		ch = wgetch(mapWindow); // Gets character
 		switch(ch)
@@ -207,7 +207,7 @@ void Game::play(bool debug)
 	delwin(mapWindow);	
 	delwin(menuWindow);
 
-  if(hero.dead() == true)
+  if(hero.is_dead() == true)
   {
     // Create Death Screen
     WINDOW * deathWindow = newwin(min(LINES, 148), min(COLS, 148), 0, 0);
