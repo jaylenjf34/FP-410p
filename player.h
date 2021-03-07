@@ -28,8 +28,6 @@ class player
 
 		int ret_whiffle(); // returns whiffle that the player has
 		int ret_energy(); // returns energy the player has
-
-
 		int add_energy(int); // add energy to the player
 		int remove_energy(int); // removes energy from the player
 		int add_whiffle(int); // adds currency to the player
@@ -42,15 +40,15 @@ class player
 		int use_pick_axe(int, int); // uses up a player's pickaxe
 		int add_ship(); // used for acquiring ship on the map.
 		bool has_ship(); // returns true or false value to determine whether player has a ship or not.
-		int add_diamonds(); // adds diamomds to the player's items
+		int add_diamonds(); // adds diamonds to the player's items
 		int ret_diamonds(); // return the amount of diamonds the player has
 		int ret_grovnik(); // returns the type of grovnik the player has
 		bool has_axe(); // tells whether the player has an axe or not
 		bool has_pick_axe(); // tells whether player has pickaxe or not
 		int ret_axe_type(); // tells us what type of axe we have
-    // Added by Jacob (clarifying so you know what's new)
-    int change_grov_obj(int);
-    int ret_grov_obj();
+		// Added by Jacob (clarifying so you know what's new)
+		int change_grov_obj(int);
+		int ret_grov_obj();
 		bool handle_movement(char);
 		int add_binoculars();
 		bool has_binoculars();
@@ -64,7 +62,7 @@ class player
 		bool pick_axe;// value to determine whether player has a pickaxe or not
 		bool ship; // used for adding ship to player's objects
 		int diamonds; // used to store the number of player's diamonds
-    int grov_obj;
+    	int grov_obj;
 		bool binoculars;
 
 
