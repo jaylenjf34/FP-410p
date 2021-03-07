@@ -183,7 +183,7 @@ bool player::handle_movement(char terrain)
 			return false;
 			break;
 		default:
-			// probably shouldn't be here
+			// TODO: implement error handling
 			return false;
 	}	
 } 
