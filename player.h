@@ -47,11 +47,12 @@ class player
 		bool has_pick_axe(); // tells whether player has pickaxe or not
 		int ret_axe_type(); // tells us what type of axe we have
 		// Added by Jacob (clarifying so you know what's new)
-		int change_grov_obj(int);
-		int ret_grov_obj();
 		bool handle_movement(char);
 		int add_binoculars();
 		bool has_binoculars();
+		// TODO: implement following functions
+		int change_grov_obj(int);
+		int ret_grov_obj();
 
 	protected:
 		int energy; // player life
