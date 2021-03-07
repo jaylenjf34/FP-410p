@@ -2,26 +2,13 @@
 #define PLAYER_H
 #include <iostream>
 
-
-
-
-/*
-
-   this is the player class that holds all relevant info that determines whether
-   the player is dead or not, how much currency, energy, and what items that the player has in their
-   possession.
-
-
-
-
+/**
+ * This is the player class that holds all relevant info that determines whether the player is dead or not, 
+ * how much currency, energy, and what items that the player has in their possession.
  */
-
 
 class player
 {
-
-
-
 	public:
 
 		player(int e, int w, bool a, int a_t, int g);
@@ -65,11 +52,6 @@ class player
     	int grov_obj;
 		bool binoculars;
 
-
-
 };
-
-
-
 
 #endif
