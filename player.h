@@ -63,7 +63,6 @@ class player
 		int ret_grovnik(); // returns the type of grovnik the player has
 		bool has_axe(); // tells whether the player has an axe or not
 		bool has_pick_axe(); // tells whether player has pickaxe or not
-		int ret_axe_type(); // tells us what type of axe we have
 		bool handle_movement(char); // handles player state when attempting to move character
 		int add_binoculars(); // add binoculars to the player
 		bool has_binoculars(); // tells us whether player has binoculars or not
@@ -73,17 +72,6 @@ class player
 
 	protected:
   
-		int energy; // used to store the amount of player life
-		int whiffle; // used to store the amount of player currency
-		int curr_grov; // current type of grovnik that the player is on
-		int grov_obj; // TODO: implement use of grov_obj or remove
-		bool axe;  // value to determine whether a user has an axe or not
-		int axe_type; // type of axe the player has
-		bool pick_axe;// value to determine whether player has a pickaxe or not
-		bool ship; // used for adding ship to player's objects
-		int diamonds; // used to store the number of player's diamonds
-		bool binoculars; // value to determine whether player has binoculars or not
-
 
 	  Pack MyPack;
 		int energy; // player life

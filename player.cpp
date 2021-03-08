@@ -292,16 +292,6 @@ bool player :: has_axe()
 }
 
 
-/**
- * @brief returns what axe type we have.
- * 
- * @return int 
- */
-int player :: ret_axe_type()
-{
-	return axe_type;
-}
-
 
 /**
  * @brief change player's energy depending on player's movement through terrain
