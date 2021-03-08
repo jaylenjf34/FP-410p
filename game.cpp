@@ -1,4 +1,4 @@
-/*
+/**
  * This file implements the Game class.
  */
 #include <cctype>
@@ -9,7 +9,7 @@
 #include <stdlib.h>
 using namespace std;
 
-/*
+/**
  * Constructor
  * 
  * @param hero:  the initial state of the player
@@ -25,7 +25,7 @@ Game::Game() : hero(1000, 1000, false, 0, 0)
 	mapCol = 0;
 }
 
-/*
+/**
  * Destructor 
  */
 Game::~Game()
@@ -33,7 +33,7 @@ Game::~Game()
 	cursorRow = cursorCol = 0;	
 }
 
-/*
+/**
  * Play
  * 
  * Main function that drives game logic, called in driver code.
@@ -140,7 +140,7 @@ void Game::play(bool debug)
   menu.update(&curGrov, &hero);
 	menu.render(menuWindow);
 
-	while (ch != 'q' && !hero.dead() && hero.ret_diamonds() < 4) // Runs until 'q' is entered or hero is dead
+	while (ch != 'q' && !hero.is_dead() && hero.ret_diamonds() < 4) // Runs until 'q' is entered or hero is dead
 	{
 		ch = wgetch(mapWindow); // Gets character
 		switch(ch)
@@ -206,7 +206,7 @@ void Game::play(bool debug)
 	delwin(mapWindow);	
 	delwin(menuWindow);
 
-  if(hero.dead() == true)
+  if(hero.is_dead() == true)
   {
     // Create Death Screen
     WINDOW * deathWindow = newwin(min(LINES, 148), min(COLS, 148), 0, 0);
@@ -245,7 +245,7 @@ void Game::play(bool debug)
 	return;
 }
 
-/*
+/**
  * Render player
  * 
  * Determines if player is in the current window, renders the player if so
@@ -266,7 +266,7 @@ void Game::render_player(WINDOW * & map_window, int player_row, int player_col)
 	}
 }
 
-/*
+/**
  * Handle Item
  * 
  * Handles item location based on the item at the current grovnik
@@ -424,7 +424,7 @@ void Game::handle_item(WINDOW* mapWindow, WINDOW* menuWindow, int player_row, in
   }
 }
 
-/*
+/**
  * Prompt
  * 
  * Helper function to get user input when required (ie buying a food/item)

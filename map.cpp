@@ -1,4 +1,4 @@
-/*
+/**
  * This file implements the Map Class and defines a constructor and destructor for a Grovnik.  The map
  * is a 128x128 array of grovniks initialized to be meadow grovniks with no items.  A map.load() function is
  * exposed to allow the parsing of a data file that assigns each grovnik its terrain type and item.
@@ -13,7 +13,7 @@
 
 using namespace std;
 
-/*
+/**
  * Grovnik Constructor
  */
 Grovnik::Grovnik()
@@ -24,7 +24,7 @@ Grovnik::Grovnik()
   item = NULL; // pointer to object
 }
 
-/*
+/**
  * Grovnik Destructor 
  */
 Grovnik::~Grovnik()
@@ -36,7 +36,7 @@ Grovnik::~Grovnik()
   }
 }
 
-/*
+/**
  * Map Constructor
  */
 Map::Map()
@@ -44,7 +44,7 @@ Map::Map()
   srand(time(0)); // init random number generator for assigning items
 }
 
-/*
+/**
  * Map Destructor 
  */
 Map::~Map()
@@ -57,7 +57,7 @@ Map::~Map()
   }
 }
 
-/*
+/**
  * Set Debug
  * 
  * If debug is true, then all map tiles are set to visible
@@ -67,7 +67,7 @@ void Map::set_debug(bool _debug)
   debug = _debug;
 }
 
-/*
+/**
  * Get Grovnik
  * 
  * @param y:  row coordinate to get
@@ -79,7 +79,7 @@ Grovnik & Map::mapGetter(int y, int x)
   return mapArr[y][x];
 }
 
-/*
+/**
  * Player Move
  * 
  * Given character, player, and player coordinates, adjust coordinates and handle terrain penalties
@@ -141,7 +141,7 @@ void Map::player_move(char ch, int& y, int& x, player & hero)
   } 
 }
 
-/*
+/**
  * Map Render
  * 
  * Render the map with terrain and chars given a start row and start col.  Think of start row and start col
@@ -242,7 +242,7 @@ void Map::render(WINDOW * & map_window, int start_row, int start_col)
   }
 }
 
-/*
+/**
  * Display Object
  * 
  * Basically translates the character contained in grovnik.object to a character to be rendered out to
@@ -286,7 +286,7 @@ char Map::displayObj(char object)
   return ret;
 }
 
-/*
+/**
  * Map Load
  * 
  * Update the grovnik array with information from the map file
@@ -349,7 +349,7 @@ bool Map::load(int& playerY, int& playerX, std::string mapName)
   return true;
 }
 
-/*
+/**
  * Map Output
  * 
  * Used in testing to output the read map to the terminal.  Not used in production, but here for reference.
@@ -376,7 +376,7 @@ void Map::output() // For testing purposes: Outputs map
   }
 }
 
-/*
+/**
  * Update Cursor
  * 
  * Updates the cursor position given the coordinates and map window
@@ -386,7 +386,7 @@ void Map::update_cursor(WINDOW * & map_window, int y, int x)
   wmove(map_window, y, x);
 }
 
-/*
+/**
  * Mark Visible
  * 
  * Flips the visibile bools of grovniks in a 3x3 (5x5 if binoculars are available) square around the player
@@ -441,7 +441,7 @@ void Map::mark_visible(int row, int col, player & hero)
   }
 }
 
-/*
+/**
  * Create Item
  * 
  * Create a new item at a Grovnik.  This is done on map file load
@@ -478,7 +478,7 @@ void Map::create_item(int row, int col, char ch)
   }
 }
 
-/*
+/**
  * Initialize Items
  * 
  * Parse the name, value, and other attributes of custom items during map.load().  Currently, only food
@@ -509,7 +509,7 @@ void Map::init_items(ifstream & file)
   }
 }
 
-/*
+/**
  * Tokenize
  * 
  * Helper function to break |-delimited string into tokens to parse.  First turns string into stringstream,
@@ -528,7 +528,7 @@ void Map::tokenize(std::vector<std::string> & tokens, std::string & to_tokenize)
   }
 }
 
-/*
+/**
  * Clear
  * 
  * Simple function that clears the grovnik object char after item used, obstacle cleared, etc.

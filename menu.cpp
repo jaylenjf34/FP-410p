@@ -1,9 +1,9 @@
-/*
+/**
  * This file implements the menu
  */
 #include "menu.h"
 
-/*
+/**
  * Constructor
  */
 Menu::Menu()
@@ -12,7 +12,7 @@ Menu::Menu()
   myPlayer = nullptr;
 }
 
-/*
+/**
  * Update
  * 
  * Reassigns current grovnik and player pointers
@@ -25,7 +25,7 @@ bool Menu::update(Grovnik* grov, player* p)
   return true;
 }
 
-/*
+/**
  * Render
  * 
  * Manipulates window to present menu information and information about the current grovnik under the
@@ -72,7 +72,7 @@ void Menu::render(WINDOW* win)
   return;
 }
 
-/*
+/**
  * Read Grov
  * 
  * Prints grovnik item and terrain information to the menu window
@@ -217,7 +217,7 @@ void Menu::readgrov(WINDOW* win)
   }
 }
 
-/*
+/**
  * Prompt Buy
  * 
  * Displays a purchase prompt for Food and Tool item types
@@ -229,7 +229,7 @@ void Menu::prompt_buy(WINDOW* win, Item* item)
   wrefresh(win);
 }
 
-/*
+/**
  * Prompt Use 
  * 
  * Display a Use Tool prompt for Tool Items
