@@ -5,7 +5,6 @@
 #include <cstring>
 #include <algorithm>
 #include "game.h"
-#include <string>
 #include <time.h> 
 #include <stdlib.h>
 using namespace std;
@@ -214,10 +213,10 @@ void Game::play(bool debug)
     getmaxyx(deathWindow, mapWindowRows, mapWindowCols); // Now that both windows are gone, we can reuse mapWindowRows/Cols 
    
     // Print text in center of screen
-    mvprintw((mapWindowRows / 2) - 2, (mapWindowCols -strlen("You have run out of energy.")) / 2, "You have run out of energy.");
-    mvprintw((mapWindowRows / 2) - 1, (mapWindowCols - strlen("You fall to the ground, unable to move on.")) / 2, "You fall to the ground, unable to move on.");
-    mvprintw((mapWindowRows / 2), (mapWindowCols - strlen("Your corpse's whiffles will be stolen by future travellers.")) / 2, "Your corpse's whiffles will be stolen by future travellers.");
-    mvprintw((mapWindowRows / 2) + 1, (mapWindowCols - strlen("Press q to quit, so you may start a new hero's adventure.")) / 2, "Press q to quit, so you may start a new hero's adventure.");
+    mvprintw((mapWindowRows / 2) - 2, (mapWindowCols -strlen(lose_statement)) / 2, lose_statement);
+    mvprintw((mapWindowRows / 2) - 1, (mapWindowCols - strlen(lose_statement_two)) / 2, lose_statement_two);
+    mvprintw((mapWindowRows / 2), (mapWindowCols - strlen(lose_statement_three)) / 2, lose_statement_three);
+    mvprintw((mapWindowRows / 2) + 1, (mapWindowCols - strlen(lose_statement_four)) / 2, lose_statement_four);
 
     while (ch != 'q') // Runs until 'q' is entered or hero is dead
     {
@@ -232,10 +231,10 @@ void Game::play(bool debug)
     WINDOW * winWindow = newwin(min(LINES, 148), min(COLS, 148), 0, 0);
     getmaxyx(winWindow, mapWindowRows, mapWindowCols); // Now that both windows are gone, we can reuse mapWindowRows/Cols
     // Print text in center of screen
-    mvprintw((mapWindowRows / 2) - 2, (mapWindowCols -strlen("You have found all 4 diamonds!")) / 2, "You have found all 4 diamonds!");
-    mvprintw((mapWindowRows / 2) - 1, (mapWindowCols - strlen("Energy: Infinite.")) / 2, "Energy: Infinite.");
-    mvprintw((mapWindowRows / 2), (mapWindowCols - strlen("Whiffles: One Zillion Zillion")) / 2, "Whiffles: One Zillion Zillion");
-    mvprintw((mapWindowRows / 2) + 1, (mapWindowCols - strlen("Press q to end the game.")) / 2, "Press q to end the game.");
+    mvprintw((mapWindowRows / 2) - 2, (mapWindowCols -strlen(win_statement)) / 2, win_statement);
+    mvprintw((mapWindowRows / 2) - 1, (mapWindowCols - strlen(win_statement_two)) / 2, win_statement_two);
+    mvprintw((mapWindowRows / 2), (mapWindowCols - strlen(win_statement_three)) / 2, win_statement_three);
+    mvprintw((mapWindowRows / 2) + 1, (mapWindowCols - strlen(win_statement_four)) / 2, win_statement_four);
     while (ch != 'q') // Runs until 'q' is entered or hero is dead
     {
       ch = getch(); // Gets character
