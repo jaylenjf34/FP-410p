@@ -1,7 +1,7 @@
 /**
  * This file implements the Player class
  */
-#include "Player.h"
+#include "player.h"
 #include "grovnik.h"
 
 using namespace std;
