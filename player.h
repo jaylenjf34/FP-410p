@@ -41,6 +41,14 @@ class Player
 		bool is_dead (); // function that checks whether the user is dead or not
 		bool handle_movement(char); // handles Player state when attempting to move character
 
+		bool has_axe(); // tells whether the Player has an axe or not
+		int pickup_axe(); // lets a Player pickup an axe
+		int use_axe(int, int); // determines energy used for axe use
+
+		bool has_pick_axe(); // tells whether Player has pickaxe or not
+		int pickup_pick_axe(); // lets Player pickup pick_axe
+		int use_pick_axe(int, int); // uses up a Player's pickaxe
+
 		int ret_energy(); // returns energy the Player has
 		int add_energy(int); // add energy to the Player
 		int remove_energy(int); // removes energy from the Player
@@ -54,14 +62,6 @@ class Player
 		// TODO: implement following functions
 		int change_grov_obj(int);
 		int ret_grov_obj();
-
-		bool has_axe(); // tells whether the Player has an axe or not
-		int pickup_axe(); // lets a Player pickup an axe
-		int use_axe(int, int); // determines energy used for axe use
-
-		bool has_pick_axe(); // tells whether Player has pickaxe or not
-		int pickup_pick_axe(); // lets Player pickup pick_axe
-		int use_pick_axe(int, int); // uses up a Player's pickaxe
 
 		bool has_ship(); // returns true or false value to determine whether Player has a ship or not.
 		int add_ship(); // used for acquiring ship on the map.

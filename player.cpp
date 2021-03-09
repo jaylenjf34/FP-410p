@@ -104,7 +104,7 @@ bool Player::handle_movement(char terrain)
 	switch (terrain)
 	{
 		case '0':  // handle meadow
-			--energy;
+			remove_energy(1);
 			return true;
 			break;
 		case '1': // handle water
@@ -114,16 +114,16 @@ bool Player::handle_movement(char terrain)
 			}
 			else
 			{
-				--energy;
+				remove_energy(1);
 				return false;
 			}
 			break;
 		case '2': // handle swamp
-			energy -= 2;
+			remove_energy(2);
 			return true;
 			break;
 		case '3':  // handle wall
-			--energy;
+			remove_energy(1);
 			return false;
 			break;
 		default:
@@ -131,6 +131,79 @@ bool Player::handle_movement(char terrain)
 			return false;
 	}	
 } 
+
+
+/**
+ * @brief determines whether the Player has an axe or not
+ * 
+ * @return true if Player has an axe, else false
+ */
+bool Player :: has_axe()
+{
+	return MyPack.has_axe();
+}
+
+/**
+ * @brief gives Player an axe. axe type is passed in as an int
+ * 
+ * @return int 
+ */
+int Player :: pickup_axe()
+{
+	MyPack.add_axe();
+	return 1;
+}
+
+/**
+ * @brief function to use axe and determine how much energy is used
+ * 
+ * @param e_used amount of energy used as int
+ * @param div division factor as int
+ * @return int 
+ */
+int Player :: use_axe(int e_used, int div)
+{
+	e_used = e_used / div; // calculate energy to remove
+	remove_energy(e_used); // remove energy from axe use
+	MyPack.use_axe();
+	return 1;
+}
+
+/**
+ * @brief function to determine if the Player has a pick_axe
+ * 
+ * @return true if Player has pick_axe, else false
+ */
+bool Player :: has_pick_axe()
+{
+  return MyPack.has_pickaxe();
+}
+
+/**
+ * @brief gives Player a pick_axe. pick_axe type is passed in as an int
+ * 
+ * @return int 
+ */
+int Player :: pickup_pick_axe()
+{
+	MyPack.add_pickaxe();
+	return 1;
+}
+
+/**
+ * @brief function to use axe and determine how much energy is used
+ * 
+ * @param e_used energy used as int
+ * @param div division factor as int
+ * @return int 1
+ */
+int Player :: use_pick_axe(int e_used, int div)
+{
+	e_used = e_used / div;
+	remove_energy(e_used);
+	MyPack.use_pickaxe();
+	return 1;
+}
 
 /**
  * @brief returns amount of energy for outisde use
@@ -231,78 +304,6 @@ int Player :: change_grovnik(int type)
 int Player :: ret_grovnik()
 {
 	return curr_grov;
-}
-
-/**
- * @brief determines whether the Player has an axe or not
- * 
- * @return true if Player has an axe, else false
- */
-bool Player :: has_axe()
-{
-	return MyPack.has_axe();
-}
-
-/**
- * @brief gives Player an axe. axe type is passed in as an int
- * 
- * @return int 
- */
-int Player :: pickup_axe()
-{
-	MyPack.add_axe();
-	return 1;
-}
-
-/**
- * @brief function to use axe and determine how much energy is used
- * 
- * @param e_used amount of energy used as int
- * @param div division factor as int
- * @return int 
- */
-int Player :: use_axe(int e_used, int div)
-{
-	e_used = e_used / div; // calculate energy to remove
-	remove_energy(e_used); // remove energy from axe use
-	MyPack.use_axe();
-	return 1;
-}
-
-/**
- * @brief function to determine if the Player has a pick_axe
- * 
- * @return true if Player has pick_axe, else false
- */
-bool Player :: has_pick_axe()
-{
-  return MyPack.has_pickaxe();
-}
-
-/**
- * @brief gives Player a pick_axe. pick_axe type is passed in as an int
- * 
- * @return int 
- */
-int Player :: pickup_pick_axe()
-{
-	MyPack.add_pickaxe();
-	return 1;
-}
-
-/**
- * @brief function to use axe and determine how much energy is used
- * 
- * @param e_used energy used as int
- * @param div division factor as int
- * @return int 1
- */
-int Player :: use_pick_axe(int e_used, int div)
-{
-	e_used = e_used / div;
-	remove_energy(e_used);
-	MyPack.use_pickaxe();
-	return 1;
 }
 
 /**
