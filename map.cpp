@@ -82,15 +82,15 @@ Grovnik & Map::mapGetter(int y, int x)
 /**
  * Player Move
  * 
- * Given character, player, and player coordinates, adjust coordinates and handle terrain penalties
- * via player.handle_movement()
+ * Given character, Player, and Player coordinates, adjust coordinates and handle terrain penalties
+ * via Player.handle_movement()
  * 
  * @param ch:  input from wgetch (game)
- * @param y:  reference to player's row coordinate
- * @param x:  reference to player's col coordinate
- * @param hero:  reference to the player
+ * @param y:  reference to Player's row coordinate
+ * @param x:  reference to Player's col coordinate
+ * @param hero:  reference to the Player
  */
-void Map::player_move(char ch, int& y, int& x, player & hero)
+void Map::player_move(char ch, int& y, int& x, Player & hero)
 {
   switch(ch) 
   {
@@ -291,8 +291,8 @@ char Map::displayObj(char object)
  * 
  * Update the grovnik array with information from the map file
  * 
- * @param playerY:  row of the player
- * @param playerX:  col of the player
+ * @param playerY:  row of the Player
+ * @param playerX:  col of the Player
  * @param mapName:  name of the map file
  * @return:  true if file found and opened, false otherwise
  */
@@ -389,13 +389,13 @@ void Map::update_cursor(WINDOW * & map_window, int y, int x)
 /**
  * Mark Visible
  * 
- * Flips the visibile bools of grovniks in a 3x3 (5x5 if binoculars are available) square around the player
+ * Flips the visibile bools of grovniks in a 3x3 (5x5 if binoculars are available) square around the Player
  * 
- * @param row:  player's row coordinate
- * @param col:  player's col coordinate
- * @param hero:  current player
+ * @param row:  Player's row coordinate
+ * @param col:  Player's col coordinate
+ * @param hero:  current Player
  */
-void Map::mark_visible(int row, int col, player & hero)
+void Map::mark_visible(int row, int col, Player & hero)
 {
   if (hero.has_binoculars())
   {

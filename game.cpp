@@ -271,7 +271,7 @@ void Game::render_player(WINDOW * & map_window, int player_row, int player_col)
  * 
  * Handles item location based on the item at the current grovnik
  */
-void Game::handle_item(WINDOW* mapWindow, WINDOW* menuWindow, int player_row, int player_col, player& hero)
+void Game::handle_item(WINDOW* mapWindow, WINDOW* menuWindow, int player_row, int player_col, Player& hero)
 {	
   bool destroy = false;
   bool use = false;

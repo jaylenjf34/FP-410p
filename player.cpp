@@ -1,20 +1,20 @@
 /**
- * This file implements the player class
+ * This file implements the Player class
  */
-#include "player.h"
+#include "Player.h"
 #include "grovnik.h"
 
 using namespace std;
 
 /**
- * @brief sets starter values for the player
+ * @brief sets starter values for the Player
  * 
  * @param e initial energy
  * @param w initial whiffle count
- * @param a whether player starts with an axe or not
+ * @param a whether Player starts with an axe or not
  * @param a_t initial axe type
  * @param g initial grovnik
- * @return player 
+ * @return Player 
  */
 
 
@@ -84,9 +84,9 @@ bool Pack :: has_binoculars()
 
 }
 
-// sets starter values for the player
+// sets starter values for the Player
 
-player :: player ( int e, int w, bool a, int a_t, int g)
+Player :: Player ( int e, int w, bool a, int a_t, int g)
 {
 	energy = e;
 	whiffle = w;
@@ -96,36 +96,36 @@ player :: player ( int e, int w, bool a, int a_t, int g)
 }
 
 /**
- * @brief increases the energy that the player has.
+ * @brief increases the energy that the Player has.
  * 
- * @param val int to increase player's energy by
+ * @param val int to increase Player's energy by
  * @return int 1 
  */
-int player :: add_energy(int val)
+int Player :: add_energy(int val)
 {
 	energy += val;
 	return 1;
 }
 
 /**
- * @brief increases currency the player has with passed in value
+ * @brief increases currency the Player has with passed in value
  * 
- * @param val int to increase player currency by
+ * @param val int to increase Player currency by
  * @return int 1
  */
-int player :: add_whiffle( int val)
+int Player :: add_whiffle( int val)
 { 
 	whiffle += val; 
 	return 1;
 }
 
 /**
- * @brief removes energy from the player with passed in value
+ * @brief removes energy from the Player with passed in value
  * 
  * @param val int to decrease energy by
  * @return int 1
  */
-int player :: remove_energy(int val)
+int Player :: remove_energy(int val)
 {
 	energy -= val;
 	if(energy <= 0)
@@ -137,12 +137,12 @@ int player :: remove_energy(int val)
 }
 
 /**
- * @brief removes currency from the player with  a passed in value;
+ * @brief removes currency from the Player with  a passed in value;
  * 
- * @param val int to decrease player currency by
+ * @param val int to decrease Player currency by
  * @return int 1
  */
-int player :: remove_whiffle (int val)
+int Player :: remove_whiffle (int val)
 {
 	whiffle -= val;
 
@@ -155,13 +155,13 @@ int player :: remove_whiffle (int val)
 }
 
 /**
- * @brief function to determine if the player has died or not
+ * @brief function to determine if the Player has died or not
  * 
- * @return true if player energy > 0, false otherwise
+ * @return true if Player energy > 0, false otherwise
  */
-bool player :: is_dead ()
+bool Player :: is_dead ()
 {
-	if(energy <= 0) // player is dead
+	if(energy <= 0) // Player is dead
 	{
 		return true;
 	}
@@ -174,7 +174,7 @@ bool player :: is_dead ()
  * 
  * @return int 
  */
-int player :: ret_whiffle()
+int Player :: ret_whiffle()
 {
 	return whiffle;
 }
@@ -184,29 +184,29 @@ int player :: ret_whiffle()
  * 
  * @return int 
  */
-int player :: ret_energy()
+int Player :: ret_energy()
 {
 	return energy;
 }
 
 /**
- * @brief updates the type of grovnik that the player is on. 
+ * @brief updates the type of grovnik that the Player is on. 
  * 
  * @param type int representing new grovnik type
  * @return int 1
  */
-int player :: change_grovnik(int type)
+int Player :: change_grovnik(int type)
 {
 	curr_grov = type;
 	return 1;
 }
 
 /**
- * @brief gives player an axe. axe type is passed in as an int
+ * @brief gives Player an axe. axe type is passed in as an int
  * 
  * @return int 
  */
-int player :: pickup_axe()
+int Player :: pickup_axe()
 {
 	MyPack.add_axe();
 	return 1;
@@ -219,7 +219,7 @@ int player :: pickup_axe()
  * @param div division factor as int
  * @return int 
  */
-int player :: use_axe(int e_used, int div)
+int Player :: use_axe(int e_used, int div)
 {
 	e_used = e_used / div; // calculate energy to remove
 	remove_energy(e_used); // remove energy from axe use
@@ -228,33 +228,33 @@ int player :: use_axe(int e_used, int div)
 }
 
 /**
- * @brief function for giving player a ship
+ * @brief function for giving Player a ship
  * 
  * @return int 1
  */
-int player :: add_ship()
+int Player :: add_ship()
 {
 	ship = true;
 	return 1;
 }
 
 /**
- * @brief function for determining whether the player has a ship or not.
+ * @brief function for determining whether the Player has a ship or not.
  * 
- * @return true if player has a ship, else false
+ * @return true if Player has a ship, else false
  */
-bool player :: has_ship()
+bool Player :: has_ship()
 {
 	return ship;
 }
 
 
 /**
- * @brief function to add 1 diamond to player's items
+ * @brief function to add 1 diamond to Player's items
  * 
  * @return int 1
  */
-int player :: add_diamonds()
+int Player :: add_diamonds()
 {
 	++diamonds;
 	return 1;
@@ -262,31 +262,31 @@ int player :: add_diamonds()
 
 
 /**
- * @brief function to return number of diamonds the player has.
+ * @brief function to return number of diamonds the Player has.
  * 
  * @return int
  */
-int player :: ret_diamonds()
+int Player :: ret_diamonds()
 {
 	return diamonds;
 }
 
 /**
- * @brief returns the type of grovnik the player is currently on.
+ * @brief returns the type of grovnik the Player is currently on.
  * 
  * @return int 
  */
-int player :: ret_grovnik()
+int Player :: ret_grovnik()
 {
 	return curr_grov;
 }
 
 /**
- * @brief determines whether the player has an axe or not
+ * @brief determines whether the Player has an axe or not
  * 
- * @return true if player has an axe, else false
+ * @return true if Player has an axe, else false
  */
-bool player :: has_axe()
+bool Player :: has_axe()
 {
 	return MyPack.has_axe();
 }
@@ -294,12 +294,12 @@ bool player :: has_axe()
 
 
 /**
- * @brief change player's energy depending on player's movement through terrain
+ * @brief change Player's energy depending on Player's movement through terrain
  * 
  * @param terrain type of terrain as char
  * @return true if movement possible, else false
  */
-bool player::handle_movement(char terrain)
+bool Player::handle_movement(char terrain)
 {
 	switch (terrain)
 	{
@@ -333,32 +333,32 @@ bool player::handle_movement(char terrain)
 } 
 
 /**
- * @brief function for giving player binoculars
+ * @brief function for giving Player binoculars
  * 
  * @return int 1
  */
-int player :: add_binoculars()
+int Player :: add_binoculars()
 {
 	MyPack.add_binoculars();
 	return 1;
 }
 
 /**
- * @brief function for determining whether the player has binoculars or not.
+ * @brief function for determining whether the Player has binoculars or not.
  * 
- * @return true if player has binoculars, else false
+ * @return true if Player has binoculars, else false
  */
-bool player :: has_binoculars()
+bool Player :: has_binoculars()
 {
 	return MyPack.has_binoculars();
 }
 
 /**
- * @brief gives player a pick_axe. pick_axe type is passed in as an int
+ * @brief gives Player a pick_axe. pick_axe type is passed in as an int
  * 
  * @return int 
  */
-int player :: pickup_pick_axe()
+int Player :: pickup_pick_axe()
 {
 	MyPack.add_pickaxe();
 	return 1;
@@ -371,7 +371,7 @@ int player :: pickup_pick_axe()
  * @param div division factor as int
  * @return int 1
  */
-int player :: use_pick_axe(int e_used, int div)
+int Player :: use_pick_axe(int e_used, int div)
 {
 	e_used = e_used / div;
 	remove_energy(e_used);
@@ -380,11 +380,11 @@ int player :: use_pick_axe(int e_used, int div)
 }
 
 /**
- * @brief function to determine if the player has a pick_axe
+ * @brief function to determine if the Player has a pick_axe
  * 
- * @return true if player has pick_axe, else false
+ * @return true if Player has pick_axe, else false
  */
-bool player :: has_pick_axe()
+bool Player :: has_pick_axe()
 {
   return MyPack.has_pickaxe();
 }
