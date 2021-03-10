@@ -73,7 +73,9 @@ Food::Food(const Food & source): Item(source)
  * Destructor (Food)
  */
 Food::~Food()
-{}
+{
+  energy_value = 0;
+}
 
 /**
  * Return Energy
@@ -88,10 +90,10 @@ int Food::ret_energy()
 /**
  * Constructor (Axe)
  */
-Axe::Axe ( int c, std::string _name, int val)
+Axe::Axe ( int c, std::string _name, int div_factor)
      :Item(c, _name)
 {
-  energy_div = val;
+  energy_div = div_factor;
 }
 
 /**
@@ -116,10 +118,10 @@ int Axe::ret_energy_div()
 /**
  * Constructor (Pickaxe)
  */
-PickAxe::PickAxe( int c, std::string _name, int val)
+PickAxe::PickAxe( int c, std::string _name, int div_factor)
         :Item(c, _name)
 {
-  energy_div = val;
+  energy_div = div_factor;
 }
 
 /**
@@ -203,9 +205,9 @@ int Obstacle::get_energy_cost()
  * 
  * Setter for obstacle's energy cost
  */
-void Obstacle::set_energy_cost(int n)
+void Obstacle::set_energy_cost(int obstacle_cost)
 {
-  energy_cost = n;
+  energy_cost = obstacle_cost;
 }
 
 /**
