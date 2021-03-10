@@ -3,8 +3,8 @@
 #include <iostream>
 
 /**
- * This is the player class that holds all relevant info that determines whether the player is dead or not, 
- * how much currency, energy, and what items that the player has in their possession.
+ * This is the Player class that holds all relevant info that determines whether the Player is dead or not, 
+ * how much currency, energy, and what items that the Player has in their possession.
  */
 
 
@@ -26,61 +26,61 @@ class Pack
 
     protected:
 		bool axe;  // value to determine whether a user has an axe or not
-		bool pick_axe;// value to determine whether player has a pickaxe or not
+		bool pick_axe;// value to determine whether Player has a pickaxe or not
 		bool binoculars;
 
  };
 
 
-class player
+class Player
 {
 	public:
 
-		player(int e, int w, bool a, int a_t, int g);
+		Player(int e, int w, bool a, int a_t, int g);
 
 		bool is_dead (); // function that checks whether the user is dead or not
-		bool handle_movement(char); // handles player state when attempting to move character
+		bool handle_movement(char); // handles Player state when attempting to move character
 
-		int ret_energy(); // returns energy the player has
-		int add_energy(int); // add energy to the player
-		int remove_energy(int); // removes energy from the player
+		bool has_axe(); // tells whether the Player has an axe or not
+		int pickup_axe(); // lets a Player pickup an axe
+		int use_axe(int, int); // determines energy used for axe use
 
-		int ret_whiffle(); // returns whiffle that the player has
-		int add_whiffle(int); // adds currency to the player
-		int remove_whiffle(int); // removes currency from the player
+		bool has_pick_axe(); // tells whether Player has pickaxe or not
+		int pickup_pick_axe(); // lets Player pickup pick_axe
+		int use_pick_axe(int, int); // uses up a Player's pickaxe
+
+		int ret_energy(); // returns energy the Player has
+		int add_energy(int); // add energy to the Player
+		int remove_energy(int); // removes energy from the Player
+
+		int ret_whiffle(); // returns whiffle that the Player has
+		int add_whiffle(int); // adds currency to the Player
+		int remove_whiffle(int); // removes currency from the Player
 		
 		int change_grovnik(int); // update current grovnik type 
-		int ret_grovnik(); // returns the type of grovnik the player has
+		int ret_grovnik(); // returns the type of grovnik the Player has
 		// TODO: implement following functions
 		int change_grov_obj(int);
 		int ret_grov_obj();
 
-		bool has_axe(); // tells whether the player has an axe or not
-		int pickup_axe(); // lets a player pickup an axe
-		int use_axe(int, int); // determines energy used for axe use
-
-		bool has_pick_axe(); // tells whether player has pickaxe or not
-		int pickup_pick_axe(); // lets player pickup pick_axe
-		int use_pick_axe(int, int); // uses up a player's pickaxe
-
-		bool has_ship(); // returns true or false value to determine whether player has a ship or not.
+		bool has_ship(); // returns true or false value to determine whether Player has a ship or not.
 		int add_ship(); // used for acquiring ship on the map.
 
-		int add_diamonds(); // adds diamonds to the player's items
-		int ret_diamonds(); // return the amount of diamonds the player has
+		int add_diamonds(); // adds diamonds to the Player's items
+		int ret_diamonds(); // return the amount of diamonds the Player has
 
-		bool has_binoculars(); // tells us whether player has binoculars or not
-		int add_binoculars(); // add binoculars to the player
+		bool has_binoculars(); // tells us whether Player has binoculars or not
+		int add_binoculars(); // add binoculars to the Player
 		
 
 	protected:
 
 		Pack MyPack;
-		int energy; // player life
-		int whiffle; // player currency
-		int curr_grov; // current type of grovnik that the player is on
-		bool ship; // used for adding ship to player's objects
-		int diamonds; // used to store the number of player's diamonds
+		int energy; // Player life
+		int whiffle; // Player currency
+		int curr_grov; // current type of grovnik that the Player is on
+		bool ship; // used for adding ship to Player's objects
+		int diamonds; // used to store the number of Player's diamonds
 		int grov_obj;
 		
 };

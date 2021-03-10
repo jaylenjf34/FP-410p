@@ -11,12 +11,12 @@ class Menu
   private:
     int size = 20;
     Grovnik* curgrov;
-    player* myPlayer;
+    Player* myPlayer;
 
   public:
     Menu();
     
-    bool update(Grovnik* grov, player* p);
+    bool update(Grovnik* grov, Player* p);
     void render(WINDOW* win);
     void readgrov(WINDOW* win);
     void prompt_buy(WINDOW* win, Item* item);

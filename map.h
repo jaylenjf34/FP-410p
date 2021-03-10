@@ -34,13 +34,13 @@ class Map // Map class, contains data for map and objects displayed on it
     ~Map();
     bool load(int&, int&, std::string);
     void output();
-    void update(WINDOW * & map_window, int ch, int& y, int& x, player hero);
+    void update(WINDOW * & map_window, int ch, int& y, int& x, Player hero);
     void update_cursor(WINDOW * & map_window, int y, int x);
     void render(WINDOW * & map_window, int start_row, int start_col);
     Grovnik & mapGetter(int, int);
-    void player_move(char, int &, int &, player &);
+    void player_move(char, int &, int &, Player &);
     void set_debug(bool);
-    void mark_visible(int, int, player &);
+    void mark_visible(int, int, Player &);
     void create_item(int, int, char);
     void init_items(std::ifstream &);
     void tokenize(std::vector<std::string> &, std::string &);

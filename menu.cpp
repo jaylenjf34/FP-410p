@@ -15,9 +15,9 @@ Menu::Menu()
 /**
  * Update
  * 
- * Reassigns current grovnik and player pointers
+ * Reassigns current grovnik and Player pointers
  */
-bool Menu::update(Grovnik* grov, player* p)
+bool Menu::update(Grovnik* grov, Player* p)
 {
   myPlayer = p;
   curgrov = grov;

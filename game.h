@@ -1,7 +1,7 @@
 /*
  * This file implements the Game code.  The game class handles gameplay logic, including 
  * the timing of input events, winning and losing conditions, and certain game state such
- * as the player's location.
+ * as the Player's location.
  */
 #include "menu.h"
 #include <ncurses.h>
@@ -30,13 +30,13 @@ class Game
         void init(); 
         void play(bool); 
         void render_player(WINDOW * &, int, int);
-        void handle_item(WINDOW* mapWindow, WINDOW* menuWindow, int, int, player&);
+        void handle_item(WINDOW* mapWindow, WINDOW* menuWindow, int, int, Player&);
         bool prompt(WINDOW* win);
 
     private:
         Map map;
         Menu menu;
-        player hero;
+        Player hero;
 	    Grovnik curGrov;
 
         // CURSOR
@@ -63,10 +63,4 @@ class Game
 	char win_statement_two [17] = "Energy: Infinite";
 	char win_statement_three [30] = "Whiffles: One Zillion Zillion";
 	char win_statement_four [25] =  "Press q to end the game.";
-
-
-
-
-
-
 };
