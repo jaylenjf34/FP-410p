@@ -26,7 +26,7 @@ Game::Game() : hero(1000, 1000, false, 0, 0)
 }
 
 /**
- * Destructor 
+ * Destructor, reset all the rows and columns to 0, then exit the game.
  */
 Game::~Game()
 {

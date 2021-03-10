@@ -3,8 +3,8 @@
 #include <iostream>
 
 /**
- * This is the Player class that holds all relevant info that determines whether the Player is dead or not, 
- * how much currency, energy, and what items that the Player has in their possession.
+ * The Pack class handles player inventory such as player equippable items.
+ * This class also handles the initial player inventory. 
  */
 
 
@@ -14,12 +14,15 @@ class Pack
 	public:
 
 		Pack();
+		//functions related to the use, presence and acquisition of axes in the players inventory
 		void use_axe();
 		bool has_axe();
 		void add_axe();
+		//functions related to the use, presence and acquisition of pickaxes in the players inventory
 		void use_pickaxe();
 		void add_pickaxe();
 		bool has_pickaxe();
+		////functions related to the presence and acquisition of binoculars in the players inventory
 		int add_binoculars();
 		bool has_binoculars();
 
@@ -27,10 +30,15 @@ class Pack
     protected:
 		bool axe;  // value to determine whether a user has an axe or not
 		bool pick_axe;// value to determine whether Player has a pickaxe or not
-		bool binoculars;
+		bool binoculars;// value used to determine if the player has binoculars or not
 
  };
 
+
+/**
+ * This is the Player class that holds all relevant info that determines whether the Player is dead or not, 
+ * how much currency, energy, and what items that the Player has in their possession.
+ */
 
 class Player
 {
@@ -75,13 +83,12 @@ class Player
 
 	protected:
 
-		Pack MyPack;
+		Pack MyPack; //pack class object used for player inventory
 		int energy; // Player life
 		int whiffle; // Player currency
 		int curr_grov; // current type of grovnik that the Player is on
 		bool ship; // used for adding ship to Player's objects
 		int diamonds; // used to store the number of Player's diamonds
-		int grov_obj;
 		
 };
 

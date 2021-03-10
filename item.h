@@ -10,10 +10,10 @@
 class Item
 {
     public:
-        Item(int, std::string); // cost, name
+        Item(int, std::string); // cost, name of item
         Item(const Item &);
         virtual ~Item();
-        std::string get_name();
+        std::string get_name(); //getter functions for the menu
         int get_cost();
     protected:
         int cost;
@@ -23,19 +23,19 @@ class Item
 class Food : public Item
 {
     public:
-        Food(int, std::string, int);
+        Food(int, std::string, int);// third int is for energy_value 
         Food(const Food &);
         ~Food();
-        int ret_energy();
+        int ret_energy();// getter function for menu
 
     private:
-        int energy_value;
+        int energy_value; //how much energy a food item restores
 };
 
 class Axe : public Item
 {
   public:
-    Axe(int, std::string, int);
+    Axe(int, std::string, int); //third int is for energy_div
     int ret_energy_div();
     ~Axe();
 
@@ -47,7 +47,7 @@ class PickAxe : public Item
 {
 
   public:
-    PickAxe(int, std::string, int);
+    PickAxe(int, std::string, int); // third int is for energy_div
     int ret_energy_div();
     ~PickAxe();
 

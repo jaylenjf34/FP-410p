@@ -25,7 +25,7 @@
 class Map // Map class, contains data for map and objects displayed on it
 {
   private:
-    Grovnik mapArr[128][128];
+    Grovnik mapArr[128][128]; //determines the size of individual grovnik tiles
     bool debug;
     std::vector <Food *> food_bank;
 

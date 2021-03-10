@@ -287,12 +287,12 @@ int Player :: remove_whiffle (int val)
 /**
  * @brief updates the type of grovnik that the Player is on. 
  * 
- * @param type int representing new grovnik type
+ * @param grov_type int representing new grovnik type. See grovnik.h for values/types.
  * @return int 1
  */
-int Player :: change_grovnik(int type)
+int Player :: change_grovnik(int grov_type)
 {
-	curr_grov = type;
+	curr_grov = grov_type;
 	return 1;
 }
 
