@@ -162,7 +162,7 @@ void Map::render(WINDOW * & map_window, int start_row, int start_col)
     for(int x = 0; x < window_cols; ++x)
     {
       Grovnik & temp = mapArr[y + start_row][x + start_col]; // hold onto Grovnik being processed
-	  if(temp.visible || debug == true)
+      if(temp.visible || debug == true)
       {
         // render if no object on the tile
         if(temp.object == 'N')
