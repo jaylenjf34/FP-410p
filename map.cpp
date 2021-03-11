@@ -162,7 +162,7 @@ void Map::render(WINDOW * & map_window, int start_row, int start_col)
     for(int x = 0; x < window_cols; ++x)
     {
       Grovnik & temp = mapArr[y + start_row][x + start_col]; // hold onto Grovnik being processed
-      if(temp.visible || debug == true)
+	  if(temp.visible || debug == true)
       {
         // render if no object on the tile
         if(temp.object == 'N')
@@ -191,6 +191,7 @@ void Map::render(WINDOW * & map_window, int start_row, int start_col)
               break;
           }
         }
+
         // render diamond tile
         else if(temp.object == 'D')
         {
@@ -203,6 +204,7 @@ void Map::render(WINDOW * & map_window, int start_row, int start_col)
               break;
           }
         }
+
         // render any other type of tile
         else
         { 
@@ -231,13 +233,13 @@ void Map::render(WINDOW * & map_window, int start_row, int start_col)
           }
         }
       }
-      else
+
+      else //if temp is not visible and debug is false
       {
         wattron(map_window, COLOR_PAIR(EMPTY_PAIR));
         mvwaddch(map_window, y, x, ' ');
         wattroff(map_window, COLOR_PAIR(EMPTY_PAIR));
       }
-      
     }
   }
 }
