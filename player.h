@@ -10,7 +10,6 @@
 
 class Pack
 {
-
 	public:
 
 		Pack();
@@ -32,7 +31,7 @@ class Pack
 		bool pick_axe;// value to determine whether Player has a pickaxe or not
 		bool binoculars;// value used to determine if the player has binoculars or not
 
- };
+};
 
 
 /**

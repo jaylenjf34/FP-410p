@@ -25,7 +25,6 @@ Pack :: Pack ()
  pick_axe = false;
 }
 
-
 void Pack :: use_axe()
 {
   axe = false;
@@ -40,7 +39,6 @@ void  Pack :: add_axe()
 {
   axe = true;
 }
-
 
 void Pack ::  use_pickaxe()
 {
@@ -69,7 +67,7 @@ bool Pack :: has_binoculars()
 }
 
 // Set initial values for the Player
-Player :: Player ( int e, int w, bool a, int a_t, int g)
+Player :: Player (int e, int w, bool a, int a_t, int g)
 {
 	energy = e;
 	whiffle = w;
@@ -86,9 +84,7 @@ Player :: Player ( int e, int w, bool a, int a_t, int g)
 bool Player :: is_dead ()
 {
 	if(energy <= 0) // Player is dead
-	{
 		return true;
-	}
 	else
 		return false;
 }
@@ -134,7 +130,7 @@ bool Player::handle_movement(char terrain)
 
 
 /**
- * @brief determines whether the Player has an axe or not
+ * @brief function to determine whether the Player has an axe or not
  * 
  * @return true if Player has an axe, else false
  */
@@ -236,6 +232,7 @@ int Player :: add_energy(int val)
 int Player :: remove_energy(int val)
 {
 	energy -= val;
+
 	if(energy <= 0)
 	{
 		energy = 0;
