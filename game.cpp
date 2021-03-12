@@ -141,29 +141,14 @@ void Game::play(bool debug)
 
 		wmove(mapWindow, cursorRow, cursorCol);
 		wnoutrefresh(menuWindow);
-
-	} // While End
+	}
 
 	delwin(mapWindow);	
 	delwin(menuWindow);
 
-  if(hero.is_dead() == true)
+  if(hero.is_dead())
   {
-    // Create Death Screen
-    WINDOW * deathWindow = newwin(min(LINES, 148), min(COLS, 148), 0, 0);
-    getmaxyx(deathWindow, mapWindowRows, mapWindowCols); // Now that both windows are gone, we can reuse mapWindowRows/Cols 
-   
-    // print the death screen in middle of the screen
-    mvprintw((mapWindowRows / 2) - 2, (mapWindowCols -strlen(lose_statement)) / 2, lose_statement);
-    mvprintw((mapWindowRows / 2) - 1, (mapWindowCols - strlen(lose_statement_two)) / 2, lose_statement_two);
-    mvprintw((mapWindowRows / 2), (mapWindowCols - strlen(lose_statement_three)) / 2, lose_statement_three);
-    mvprintw((mapWindowRows / 2) + 1, (mapWindowCols - strlen(lose_statement_four)) / 2, lose_statement_four);
-
-    while (userInput != 'q') // Runs until 'q' is entered or hero is dead
-    {
-      userInput = getch(); // Gets character
-    }
-    delwin(deathWindow); // clears death screen
+    displayDeathScreen();
   }
 
   else if(hero.ret_diamonds() == 4)
@@ -259,6 +244,27 @@ void Game::moveDown()
   else
     ++cursorRow;
 }
+
+void Game::displayDeathScreen()
+{
+  int userInput = 0;
+  // Create Death Screen
+  WINDOW * deathWindow = newwin(min(LINES, 148), min(COLS, 148), 0, 0);
+  getmaxyx(deathWindow, mapWindowRows, mapWindowCols); // Now that both windows are gone, we can reuse mapWindowRows/Cols 
+  
+  // print the death screen in middle of the screen
+  mvprintw((mapWindowRows / 2) - 2, (mapWindowCols -strlen(lose_statement)) / 2, lose_statement);
+  mvprintw((mapWindowRows / 2) - 1, (mapWindowCols - strlen(lose_statement_two)) / 2, lose_statement_two);
+  mvprintw((mapWindowRows / 2), (mapWindowCols - strlen(lose_statement_three)) / 2, lose_statement_three);
+  mvprintw((mapWindowRows / 2) + 1, (mapWindowCols - strlen(lose_statement_four)) / 2, lose_statement_four);
+
+  while (userInput != 'q') // Runs until 'q' is entered or hero is dead
+  {
+    userInput = getch(); // Gets character
+  }
+  delwin(deathWindow); // clears death screen
+}
+
 
 /**
  * Render player

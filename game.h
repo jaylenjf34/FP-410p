@@ -58,15 +58,16 @@ class Game
         void moveUp();
         void moveDown();
 
+        void displayDeathScreen();
 
-	//strings for win screens/death screens
-	char lose_statement  [28]  = "You have run out of energy.";
-	char lose_statement_two [43] = "You fall to the ground, unable to move on.";
-	char lose_statement_three [69] = " Your corpse's whiffles will be stolen by future travellers.";
-	char lose_statement_four [57]  = "Press q to quit, so you may start a new hero's journey.";
+        //strings for win screens/death screens
+        char lose_statement  [28]  = "You have run out of energy.";
+        char lose_statement_two [43] = "You fall to the ground, unable to move on.";
+        char lose_statement_three [69] = " Your corpse's whiffles will be stolen by future travellers.";
+        char lose_statement_four [57]  = "Press q to quit, so you may start a new hero's journey.";
 
-	char win_statement [31] =  "You have found all 4 diamonds!";
-	char win_statement_two [17] = "Energy: Infinite";
-	char win_statement_three [30] = "Whiffles: One Zillion Zillion";
-	char win_statement_four [25] =  "Press q to end the game.";
+        char win_statement [31] =  "You have found all 4 diamonds!";
+        char win_statement_two [17] = "Energy: Infinite";
+        char win_statement_three [30] = "Whiffles: One Zillion Zillion";
+        char win_statement_four [25] =  "Press q to end the game.";
 };
