@@ -53,6 +53,8 @@ class Game
         int mapCol;
 
         void setWindowLocation(int, int);
+        void setColors();
+        
         void moveLeft();
         void moveRight();
         void moveUp();

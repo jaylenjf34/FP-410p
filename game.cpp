@@ -61,20 +61,15 @@ void Game::play(bool debug)
 
 	keypad(mapWindow, true); // Allows all keypad keys to be recognized
 
-	if (has_colors() == false)
-	{
+  if (has_colors())
+  {
+    setColors();
+  }
+  else
+  {
 		endwin();
 		exit(-1);
-	}
-
-	start_color();
-	init_pair(MEADOW_PAIR, COLOR_BLACK, COLOR_GREEN);
-	init_pair(WATER_PAIR, COLOR_BLACK, COLOR_BLUE);
-	init_pair(SWAMP_PAIR, COLOR_BLACK, COLOR_MAGENTA);
-	init_pair(WALL_PAIR, COLOR_BLACK, COLOR_WHITE);
-	init_pair(EMPTY_PAIR, COLOR_WHITE, COLOR_BLACK);
-	init_pair(PLAYER_PAIR, COLOR_YELLOW, COLOR_RED);
-	init_pair(DIAMOND_PAIR, COLOR_WHITE, COLOR_CYAN);
+  }
 
   int playerY = 0; 
   int playerX = 0;
@@ -192,6 +187,18 @@ void Game::setWindowLocation(int playerY, int playerX)
 	{
 		mapCol = playerX - (mapWindowCols / 2);
 	}
+}
+
+void Game::setColors()
+{
+  start_color();
+	init_pair(MEADOW_PAIR, COLOR_BLACK, COLOR_GREEN);
+	init_pair(WATER_PAIR, COLOR_BLACK, COLOR_BLUE);
+	init_pair(SWAMP_PAIR, COLOR_BLACK, COLOR_MAGENTA);
+	init_pair(WALL_PAIR, COLOR_BLACK, COLOR_WHITE);
+	init_pair(EMPTY_PAIR, COLOR_WHITE, COLOR_BLACK);
+	init_pair(PLAYER_PAIR, COLOR_YELLOW, COLOR_RED);
+	init_pair(DIAMOND_PAIR, COLOR_WHITE, COLOR_CYAN);
 }
 
 void Game::moveLeft()
