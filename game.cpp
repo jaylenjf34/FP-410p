@@ -61,12 +61,9 @@ void Game::play(bool debug)
 
 	keypad(mapWindow, true); // Allows all keypad keys to be recognized
 
-  if (has_colors())
-  {
+  if (has_colors()) {
     setColors();
-  }
-  else
-  {
+  } else {
 		endwin();
 		exit(-1);
   }
