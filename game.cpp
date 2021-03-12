@@ -44,12 +44,8 @@ void Game::play(bool debug)
 {
 	map.set_debug(debug);
 
-	// These are initialized to zero - map.load initializes with starting location
-  int playerY = 0; 
-  int playerX = 0;
   std::string mapName;
 
-  // Print text
   std::cout << "Collect all 4 Royal Diamonds to win!" << endl;
   std::cout << "Run out of energy to lose!" << endl;
   std::cout << "Use the cursor to scroll, and WASD to move." << endl;
@@ -88,17 +84,18 @@ void Game::play(bool debug)
 	init_pair(PLAYER_PAIR, COLOR_YELLOW, COLOR_RED);
 	init_pair(DIAMOND_PAIR, COLOR_WHITE, COLOR_CYAN);
 
-	int ch = 0; //stores user input
+  int playerY = 0; 
+  int playerX = 0;
 
 	// load map file into array
 	if(!map.load(playerY, playerX, mapName))
-        {
-    		delwin(mapWindow);
-    		delwin(menuWindow);
-    		endwin();
-                std::cout << endl << "ERROR: " << mapName << " is not a valid file!" << endl << endl;
-                exit(-1);
-        }
+  {
+    delwin(mapWindow);
+    delwin(menuWindow);
+    endwin();
+    std::cout << endl << "ERROR: " << mapName << " is not a valid file!" << endl << endl;
+    exit(-1);
+  }
 
 	// calculate starting window location based on player (try to center player if possible)
 	// calculate y
@@ -136,14 +133,16 @@ void Game::play(bool debug)
 	render_player(mapWindow, playerY, playerX);
 	wmove(mapWindow, cursorRow, cursorCol);
 
-  	curGrov = map.mapGetter(cursorRow + mapRow, cursorCol + mapCol); 
-  	menu.update(&curGrov, &hero);
+  curGrov = map.mapGetter(cursorRow + mapRow, cursorCol + mapCol); 
+  menu.update(&curGrov, &hero);
 	menu.render(menuWindow);
 
-	while (ch != 'q' && !hero.is_dead() && hero.ret_diamonds() < 4) // Runs until 'q' is entered or hero is dead
+	int userInput = 0;
+
+	while (userInput != 'q' && !hero.is_dead() && hero.ret_diamonds() < 4) // Runs until 'q' is entered or hero is dead
 	{
-		ch = wgetch(mapWindow); // Gets character
-		switch(ch)
+		userInput = wgetch(mapWindow); // Gets character
+		switch(userInput)
 		{
 			case KEY_LEFT:
 				if (cursorCol == 0) // check if window position is zero. If true, you are at the left edge of map and can't move
@@ -182,7 +181,7 @@ void Game::play(bool debug)
 					++cursorRow;
 				break;
 			default:
-				map.player_move(ch, playerY, playerX, hero);
+				map.player_move(userInput, playerY, playerX, hero);
 				handle_item(mapWindow, menuWindow, playerY, playerX, hero);
 
 				break;
@@ -218,9 +217,9 @@ void Game::play(bool debug)
     mvprintw((mapWindowRows / 2), (mapWindowCols - strlen(lose_statement_three)) / 2, lose_statement_three);
     mvprintw((mapWindowRows / 2) + 1, (mapWindowCols - strlen(lose_statement_four)) / 2, lose_statement_four);
 
-    while (ch != 'q') // Runs until 'q' is entered or hero is dead
+    while (userInput != 'q') // Runs until 'q' is entered or hero is dead
     {
-      ch = getch(); // Gets character
+      userInput = getch(); // Gets character
     }
     delwin(deathWindow); // clears death screen
   }
@@ -235,9 +234,9 @@ void Game::play(bool debug)
     mvprintw((mapWindowRows / 2) - 1, (mapWindowCols - strlen(win_statement_two)) / 2, win_statement_two);
     mvprintw((mapWindowRows / 2), (mapWindowCols - strlen(win_statement_three)) / 2, win_statement_three);
     mvprintw((mapWindowRows / 2) + 1, (mapWindowCols - strlen(win_statement_four)) / 2, win_statement_four);
-    while (ch != 'q') // Runs until 'q' is entered or hero is dead
+    while (userInput != 'q') // Runs until 'q' is entered or hero is dead
     {
-      ch = getch(); // Gets character
+      userInput = getch(); // Gets character
     }
     delwin(winWindow); // clears win screen
   }
