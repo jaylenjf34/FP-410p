@@ -9,27 +9,27 @@
 
 class Item
 {
-    public:
-        Item(int, std::string); // cost, name of item
-        Item(const Item &);
-        virtual ~Item();
-        std::string get_name(); //getter functions for the menu
-        int get_cost();
-    protected:
-        int cost;
-        std::string name;
+  public:
+    Item(int, std::string); // cost, name of item
+    Item(const Item &);
+    virtual ~Item();
+    std::string get_name(); //getter functions for the menu
+    int get_cost();
+  protected:
+    int cost;
+    std::string name;
 };
 
 class Food : public Item
 {
-    public:
-        Food(int, std::string, int);// third int is for energy_value 
-        Food(const Food &);
-        ~Food();
-        int ret_energy();// getter function for menu
+  public:
+    Food(int, std::string, int);// third int is for energy_value 
+    Food(const Food &);
+    ~Food();
+    int ret_energy();// getter function for menu
 
-    private:
-        int energy_value; //how much energy a food item restores
+  private:
+    int energy_value; //how much energy a food item restores
 };
 
 class Axe : public Item
@@ -59,18 +59,18 @@ class PickAxe : public Item
 
 class Binoculars : public Item
 {
-    public:
-      Binoculars(int _cost, std::string _name);
-	    Binoculars(const Binoculars & to_copy);
-	    ~Binoculars();
+  public:
+    Binoculars(int _cost, std::string _name);
+    Binoculars(const Binoculars & to_copy);
+    ~Binoculars();
 };
 
 class Ship : public Item
 {
-    public:
-      Ship(int _cost, std::string _name);
-      Ship(const Ship &);
-      ~Ship();
+  public:
+    Ship(int _cost, std::string _name);
+    Ship(const Ship &);
+    ~Ship();
 };
 
 class Obstacle : public Item

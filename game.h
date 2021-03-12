@@ -24,54 +24,54 @@ const int WALL = 3;
 
 class Game
 {
-    public:
-        Game();
-        ~Game();
-        void init(); 
-        void play(bool); 
-        void render_player(WINDOW * &, int, int);
-        void handle_item(WINDOW* mapWindow, WINDOW* menuWindow, int, int, Player&);
-        bool prompt(WINDOW* win);
+  public:
+    Game();
+    ~Game();
+    void init(); 
+    void play(bool); 
+    void render_player(WINDOW * &, int, int);
+    void handle_item(WINDOW* mapWindow, WINDOW* menuWindow, int, int, Player&);
+    bool prompt(WINDOW* win);
 
-    private:
-        Map map;
-        Menu menu;
-        Player hero;
-	    Grovnik curGrov;
+  private:
+    Map map;
+    Menu menu;
+    Player hero;
+    Grovnik curGrov;
 
-        // CURSOR
-        int cursorRow; // position of cursor on map window [0, LINES]
-        int cursorCol; // position of cursor on map window [0, COLS - 20]
+    // CURSOR
+    int cursorRow; // position of cursor on map window [0, LINES]
+    int cursorCol; // position of cursor on map window [0, COLS - 20]
 
-        // MAP SIZE - LINES lines, COL - 20 cols
-        int mapWindowRows; 
-        int mapWindowCols;
+    // MAP SIZE - LINES lines, COL - 20 cols
+    int mapWindowRows; 
+    int mapWindowCols;
 
-        // MAP WINDOW POSITION
-        // top left corner of window "superimposed" on mapArray
-        int mapRow;
-        int mapCol;
+    // MAP WINDOW POSITION
+    // top left corner of window "superimposed" on mapArray
+    int mapRow;
+    int mapCol;
 
-        void setWindowLocation(int, int);
-        void setColors();
-        
-        void moveLeft();
-        void moveRight();
-        void moveUp();
-        void moveDown();
+    void setWindowLocation(int, int);
+    void setColors();
 
-        void displayDeathScreen();
-        void displayWinScreen();
-        void displayInstructions();
+    void moveLeft();
+    void moveRight();
+    void moveUp();
+    void moveDown();
 
-        //strings for win screens/death screens
-        char lose_statement  [28]  = "You have run out of energy.";
-        char lose_statement_two [43] = "You fall to the ground, unable to move on.";
-        char lose_statement_three [69] = " Your corpse's whiffles will be stolen by future travellers.";
-        char lose_statement_four [57]  = "Press q to quit, so you may start a new hero's journey.";
+    void displayDeathScreen();
+    void displayWinScreen();
+    void displayInstructions();
 
-        char win_statement [31] =  "You have found all 4 diamonds!";
-        char win_statement_two [17] = "Energy: Infinite";
-        char win_statement_three [30] = "Whiffles: One Zillion Zillion";
-        char win_statement_four [25] =  "Press q to end the game.";
+    //strings for win screens/death screens
+    char lose_statement  [28]  = "You have run out of energy.";
+    char lose_statement_two [43] = "You fall to the ground, unable to move on.";
+    char lose_statement_three [69] = " Your corpse's whiffles will be stolen by future travellers.";
+    char lose_statement_four [57]  = "Press q to quit, so you may start a new hero's journey.";
+
+    char win_statement [31] =  "You have found all 4 diamonds!";
+    char win_statement_two [17] = "Energy: Infinite";
+    char win_statement_three [30] = "Whiffles: One Zillion Zillion";
+    char win_statement_four [25] =  "Press q to end the game.";
 };

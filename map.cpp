@@ -420,7 +420,7 @@ void Map::mark_visible(int row, int col, Player & hero)
       }
     }
   }
-  else
+  else //hero doesn't have binoculars
   {
     for (int i = row - 1; i < row + 2; ++i)
     {
