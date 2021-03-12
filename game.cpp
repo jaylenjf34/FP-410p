@@ -44,14 +44,9 @@ void Game::play(bool debug)
 {
 	map.set_debug(debug);
 
-  std::string mapName;
+  displayInstructions();
 
-  std::cout << "Collect all 4 Royal Diamonds to win!" << endl;
-  std::cout << "Run out of energy to lose!" << endl;
-  std::cout << "Use the cursor to scroll, and WASD to move." << endl;
-  std::cout << "Quit at anytime by typing a lowercase 'q'." << endl;
-  std::cout << "Enter the name of the map file" << endl;
-  std::cout << "Note: 'Map1.txt' is a valid map name" << endl;
+  std::string mapName;
   std::cin >> mapName;
 
 	initscr(); // Initializes ncurses
@@ -154,7 +149,7 @@ void Game::play(bool debug)
   {
     displayWinScreen();
   }
-  
+
 	endwin(); // Ends ncurses
 	return;
 }
@@ -231,6 +226,16 @@ void Game::moveDown()
     ++mapRow;
   else
     ++cursorRow;
+}
+
+void Game::displayInstructions()
+{
+  std::cout << "Collect all 4 Royal Diamonds to win!" << endl;
+  std::cout << "Run out of energy to lose!" << endl;
+  std::cout << "Use the cursor to scroll, and WASD to move." << endl;
+  std::cout << "Quit at anytime by typing a lowercase 'q'." << endl;
+  std::cout << "Enter the name of the map file" << endl;
+  std::cout << "Note: 'Map1.txt' is a valid map name" << endl;
 }
 
 void Game::displayDeathScreen()
