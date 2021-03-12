@@ -92,13 +92,13 @@ void Game::play(bool debug)
 
 	// load map file into array
 	if(!map.load(playerY, playerX, mapName))
-  {
-    delwin(mapWindow);
-    delwin(menuWindow);
-    endwin();
-    std::cout << endl << "ERROR: " << mapName << " is not a valid file!" << endl << endl;
-    exit(-1);
-  }
+        {
+    		delwin(mapWindow);
+    		delwin(menuWindow);
+    		endwin();
+                std::cout << endl << "ERROR: " << mapName << " is not a valid file!" << endl << endl;
+                exit(-1);
+        }
 
 	// calculate starting window location based on player (try to center player if possible)
 	// calculate y
@@ -136,8 +136,8 @@ void Game::play(bool debug)
 	render_player(mapWindow, playerY, playerX);
 	wmove(mapWindow, cursorRow, cursorCol);
 
-  curGrov = map.mapGetter(cursorRow + mapRow, cursorCol + mapCol); 
-  menu.update(&curGrov, &hero);
+  	curGrov = map.mapGetter(cursorRow + mapRow, cursorCol + mapCol); 
+  	menu.update(&curGrov, &hero);
 	menu.render(menuWindow);
 
 	while (ch != 'q' && !hero.is_dead() && hero.ret_diamonds() < 4) // Runs until 'q' is entered or hero is dead
@@ -212,7 +212,7 @@ void Game::play(bool debug)
     WINDOW * deathWindow = newwin(min(LINES, 148), min(COLS, 148), 0, 0);
     getmaxyx(deathWindow, mapWindowRows, mapWindowCols); // Now that both windows are gone, we can reuse mapWindowRows/Cols 
    
-    // Print text in center of screen
+    // print the death screen in middle of the screen
     mvprintw((mapWindowRows / 2) - 2, (mapWindowCols -strlen(lose_statement)) / 2, lose_statement);
     mvprintw((mapWindowRows / 2) - 1, (mapWindowCols - strlen(lose_statement_two)) / 2, lose_statement_two);
     mvprintw((mapWindowRows / 2), (mapWindowCols - strlen(lose_statement_three)) / 2, lose_statement_three);
@@ -222,7 +222,7 @@ void Game::play(bool debug)
     {
       ch = getch(); // Gets character
     }
-    delwin(deathWindow);
+    delwin(deathWindow); // clears death screen
   }
 
   else if(hero.ret_diamonds() == 4)
@@ -239,7 +239,7 @@ void Game::play(bool debug)
     {
       ch = getch(); // Gets character
     }
-    delwin(winWindow);
+    delwin(winWindow); // clears win screen
   }
 	endwin(); // Ends ncurses
 	return;

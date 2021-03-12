@@ -17,7 +17,7 @@ using namespace std;
  * @return Player 
  */
 
-
+// set up pack as empty
 Pack :: Pack ()
 {
  axe = false; 
@@ -30,16 +30,19 @@ void Pack :: use_axe()
   axe = false;
 }
 
+ // return the state  if we carry an axe
 bool Pack :: has_axe()
 {
   return axe;
 }
 
+  // add axe to inventory
 void  Pack :: add_axe()
 {
   axe = true;
 }
 
+ 
 void Pack ::  use_pickaxe()
 {
   pick_axe = false;
@@ -50,17 +53,22 @@ void Pack :: add_pickaxe()
   pick_axe = true;
 }
 
+
+// return if we have a pickaxe in our pack
+
 bool Pack :: has_pickaxe()
 {
   return pick_axe;
 }
 
+  // adds binoculars to our pack
 int Pack :: add_binoculars()
 {
   binoculars = true;
   return 1;
 }
 
+// tells weether we have binoculars in our pack or not
 bool Pack :: has_binoculars()
 {
   return binoculars;
