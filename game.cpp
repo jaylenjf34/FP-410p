@@ -54,16 +54,14 @@ void Game::play(bool debug)
   std::cout << "Note: 'Map1.txt' is a valid map name" << endl;
   std::cin >> mapName;
 
-	initscr(); //Initializes ncurses
-	noecho(); // Prevents characters from being typed
+	initscr(); // Initializes ncurses
+	noecho();  // Prevents characters from being typed
 	cbreak();
 	curs_set(2);
 
-	//Initializes two windows for map and menu
+	// Initializes two windows for map and menu
 	// Map menu has LINES rows and COLS - 20 (menu is 20 cols)
 	WINDOW * mapWindow = newwin(min(LINES, 128), min(COLS - 20, 128), 0, 0);
-	getmaxyx(mapWindow, mapWindowRows, mapWindowCols);
-
   WINDOW * menuWindow = newwin(LINES, 20, 0, COLS - 20);
 
 	keypad(mapWindow, true); // Allows all keypad keys to be recognized
@@ -71,7 +69,6 @@ void Game::play(bool debug)
 	if (has_colors() == false)
 	{
 		endwin();
-		// printf("Color isn't supported on this terminal.\n");
 		exit(-1);
 	}
 
@@ -97,35 +94,8 @@ void Game::play(bool debug)
     exit(-1);
   }
 
-	// calculate starting window location based on player (try to center player if possible)
-	// calculate y
-	if (playerY < mapWindowRows)
-	{
-		mapRow = 0;
-	}
-	else if (playerY >= 127 - mapWindowRows)
-	{
-		mapRow = 127 - mapWindowRows;
-	}
-	else
-	{
-		// else, center vertically
-		mapRow = playerY - (mapWindowRows / 2);
-	}
-
-	// calculate x
-	if (playerX < mapWindowCols)
-	{
-		mapCol = 0;
-	}
-	else if (playerX >= 127 - mapWindowCols)
-	{
-		mapRow = 127 - mapWindowCols;
-	}
-	else
-	{
-		mapCol = playerX - (mapWindowCols / 2);
-	}
+	getmaxyx(mapWindow, mapWindowRows, mapWindowCols);
+	setWindowLocation(playerY, playerX);
 
 	// Render map, player, and menu when the game starts up
 	map.mark_visible(playerY, playerX, hero);
@@ -242,6 +212,46 @@ void Game::play(bool debug)
   }
 	endwin(); // Ends ncurses
 	return;
+}
+
+/**
+ * Set Window Location
+ * 
+ * Calculates starting window location based on player location, 
+ * trying to center player if possible.
+ * 
+ * @param playerY: player's y coordinate
+ * @param playerX: player's x coordinate
+ */
+void Game::setWindowLocation(int playerY, int playerX)
+{
+  if (playerY < mapWindowRows)
+	{
+		mapRow = 0;
+	}
+	else if (playerY >= 127 - mapWindowRows)
+	{
+		mapRow = 127 - mapWindowRows;
+	}
+	else
+	{
+		// else, center vertically
+		mapRow = playerY - (mapWindowRows / 2);
+	}
+
+	// calculate x
+	if (playerX < mapWindowCols)
+	{
+		mapCol = 0;
+	}
+	else if (playerX >= 127 - mapWindowCols)
+	{
+		mapRow = 127 - mapWindowCols;
+	}
+	else
+	{
+		mapCol = playerX - (mapWindowCols / 2);
+	}
 }
 
 /**
