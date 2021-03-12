@@ -42,28 +42,30 @@ Game::~Game()
  */
 void Game::play(bool debug)
 {
-	map.set_debug(debug);
+  map.set_debug(debug);
 
   displayInstructions();
 
   std::string mapName;
   std::cin >> mapName;
 
-	initscr(); // Initializes ncurses
-	noecho();  // Prevents characters from being typed
-	cbreak();
-	curs_set(2);
+  initscr(); // Initializes ncurses
+  noecho();  // Prevents characters from being typed
+  cbreak();
+  curs_set(2);
 
-	// Initializes two windows for map and menu
-	// Map menu has LINES rows and COLS - 20 (menu is 20 cols)
-	WINDOW * mapWindow = newwin(min(LINES, 128), min(COLS - 20, 128), 0, 0);
+  // Initializes two windows for map and menu
+  // Map menu has LINES rows and COLS - 20 (menu is 20 cols)
+  WINDOW * mapWindow = newwin(min(LINES, 128), min(COLS - 20, 128), 0, 0);
   WINDOW * menuWindow = newwin(LINES, 20, 0, COLS - 20);
 
-	keypad(mapWindow, true); // Allows all keypad keys to be recognized
+  keypad(mapWindow, true); // Allows all keypad keys to be recognized
 
-  if (has_colors()) {
+  if (has_colors()) 
+  {
     setColors();
-  } else {
+  } 
+  else {
 		endwin();
 		exit(-1);
   }
@@ -72,7 +74,7 @@ void Game::play(bool debug)
   int playerX = 0;
 
 	// load map file into array
-	if(!map.load(playerY, playerX, mapName))
+  if(!map.load(playerY, playerX, mapName))
   {
     delwin(mapWindow);
     delwin(menuWindow);
@@ -81,57 +83,57 @@ void Game::play(bool debug)
     exit(-1);
   }
 
-	getmaxyx(mapWindow, mapWindowRows, mapWindowCols);
-	setWindowLocation(playerY, playerX);
+  getmaxyx(mapWindow, mapWindowRows, mapWindowCols);
+  setWindowLocation(playerY, playerX);
 
-	map.mark_visible(playerY, playerX, hero);
-	map.render(mapWindow, mapRow, mapCol); // renders plain terrain
-	render_player(mapWindow, playerY, playerX);
-	wmove(mapWindow, cursorRow, cursorCol);
+  map.mark_visible(playerY, playerX, hero);
+  map.render(mapWindow, mapRow, mapCol); // renders plain terrain
+  render_player(mapWindow, playerY, playerX);
+  wmove(mapWindow, cursorRow, cursorCol);
 
   curGrov = map.mapGetter(cursorRow + mapRow, cursorCol + mapCol); 
   menu.update(&curGrov, &hero);
-	menu.render(menuWindow);
+  menu.render(menuWindow);
 
-	int userInput = 0;
-	while (userInput != 'q' && !hero.is_dead() && hero.ret_diamonds() < 4)
+  int userInput = 0;
+  while (userInput != 'q' && !hero.is_dead() && hero.ret_diamonds() < 4)
+  {
+    userInput = wgetch(mapWindow); // Gets character
+	switch(userInput)
 	{
-		userInput = wgetch(mapWindow); // Gets character
-		switch(userInput)
-		{
-			case KEY_LEFT:
-				moveLeft();
-				break;
-			case KEY_RIGHT:
-				moveRight();
-				break;
-			case KEY_UP:
-				moveUp();
-				break;
-			case KEY_DOWN:
-				moveDown();
-				break;
-			default:
-				map.player_move(userInput, playerY, playerX, hero);
-				handle_item(mapWindow, menuWindow, playerY, playerX, hero);
-				break;
-		}
-
-		map.mark_visible(playerY, playerX, hero);
-		map.render(mapWindow, mapRow, mapCol); // this will render plain terrain!
-		// render player, if needed
-		render_player(mapWindow, playerY, playerX);
-
-		curGrov = map.mapGetter(cursorRow + mapRow, cursorCol + mapCol); 
-		menu.update(&curGrov, &hero);
-		menu.render(menuWindow);
-
-		wmove(mapWindow, cursorRow, cursorCol);
-		wnoutrefresh(menuWindow);
+	  case KEY_LEFT:
+		moveLeft();
+		break;
+	  case KEY_RIGHT:
+		moveRight();
+		break;
+	  case KEY_UP:
+		moveUp();
+		break;
+	  case KEY_DOWN:
+		moveDown();
+		break;
+	  default:
+		map.player_move(userInput, playerY, playerX, hero);
+		handle_item(mapWindow, menuWindow, playerY, playerX, hero);
+		break;
 	}
 
-	delwin(mapWindow);	
-	delwin(menuWindow);
+	map.mark_visible(playerY, playerX, hero);
+	map.render(mapWindow, mapRow, mapCol); // this will render plain terrain!
+	// render player, if needed
+	render_player(mapWindow, playerY, playerX);
+
+	curGrov = map.mapGetter(cursorRow + mapRow, cursorCol + mapCol); 
+	menu.update(&curGrov, &hero);
+	menu.render(menuWindow);
+
+	wmove(mapWindow, cursorRow, cursorCol);
+	wnoutrefresh(menuWindow);
+  }
+
+  delwin(mapWindow);	
+  delwin(menuWindow);
 
   if(hero.is_dead())
   {
@@ -142,8 +144,8 @@ void Game::play(bool debug)
     displayWinScreen();
   }
 
-	endwin(); // Ends ncurses
-	return;
+  endwin(); // Ends ncurses
+  return;
 }
 
 /**
@@ -159,30 +161,30 @@ void Game::setWindowLocation(int playerY, int playerX)
 {
   if (playerY < mapWindowRows)
 	{
-		mapRow = 0;
+	  mapRow = 0;
 	}
 	else if (playerY >= 127 - mapWindowRows)
 	{
-		mapRow = 127 - mapWindowRows;
+	  mapRow = 127 - mapWindowRows;
 	}
 	else
 	{
-		// else, center vertically
-		mapRow = playerY - (mapWindowRows / 2);
+	  // else, center vertically
+	  mapRow = playerY - (mapWindowRows / 2);
 	}
 
 	// calculate x
 	if (playerX < mapWindowCols)
 	{
-		mapCol = 0;
+	  mapCol = 0;
 	}
 	else if (playerX >= 127 - mapWindowCols)
 	{
-		mapRow = 127 - mapWindowCols;
+	  mapRow = 127 - mapWindowCols;
 	}
 	else
 	{
-		mapCol = playerX - (mapWindowCols / 2);
+	  mapCol = playerX - (mapWindowCols / 2);
 	}
 }
 
@@ -292,14 +294,14 @@ void Game::displayWinScreen()
  */
 void Game::render_player(WINDOW * & map_window, int player_row, int player_col)
 {
-	// check if player is in the window
-	if (player_row >= mapRow  && player_row < mapRow + mapWindowRows && player_col >= mapCol && player_col < mapCol + mapWindowCols)
-	{
-		// player is in the window, render the player
-		wattron(map_window, COLOR_PAIR(PLAYER_PAIR));
-		mvwaddch(map_window, player_row - mapRow, player_col - mapCol, '@');
-		wattroff(map_window, COLOR_PAIR(PLAYER_PAIR));
-	}
+  // check if player is in the window
+  if (player_row >= mapRow  && player_row < mapRow + mapWindowRows && player_col >= mapCol && player_col < mapCol + mapWindowCols)
+  {
+    // player is in the window, render the player
+    wattron(map_window, COLOR_PAIR(PLAYER_PAIR));
+    mvwaddch(map_window, player_row - mapRow, player_col - mapCol, '@');
+    wattroff(map_window, COLOR_PAIR(PLAYER_PAIR));
+  }
 }
 
 /**
