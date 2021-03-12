@@ -16,13 +16,13 @@ using namespace std;
  */
 Game::Game() : hero(1000, 1000, false, 0, 0)
 {
-	// init vars
-	cursorRow = 0;
-	cursorCol = 0;
-	mapWindowRows = 0;
-	mapWindowCols = 0;
-	mapRow = 0;
-	mapCol = 0;
+  // init vars
+  cursorRow = 0;
+  cursorCol = 0;
+  mapWindowRows = 0;
+  mapWindowCols = 0;
+  mapRow = 0;
+  mapCol = 0;
 }
 
 /**
@@ -30,7 +30,7 @@ Game::Game() : hero(1000, 1000, false, 0, 0)
  */
 Game::~Game()
 {
-	cursorRow = cursorCol = 0;	
+  cursorRow = cursorCol = 0;  
 }
 
 /**
@@ -66,14 +66,14 @@ void Game::play(bool debug)
     setColors();
   } 
   else {
-		endwin();
-		exit(-1);
+    endwin();
+    exit(-1);
   }
 
   int playerY = 0; 
   int playerX = 0;
 
-	// load map file into array
+  // load map file into array
   if(!map.load(playerY, playerX, mapName))
   {
     delwin(mapWindow);
@@ -99,40 +99,40 @@ void Game::play(bool debug)
   while (userInput != 'q' && !hero.is_dead() && hero.ret_diamonds() < 4)
   {
     userInput = wgetch(mapWindow); // Gets character
-	switch(userInput)
-	{
-	  case KEY_LEFT:
-		moveLeft();
-		break;
-	  case KEY_RIGHT:
-		moveRight();
-		break;
-	  case KEY_UP:
-		moveUp();
-		break;
-	  case KEY_DOWN:
-		moveDown();
-		break;
-	  default:
-		map.player_move(userInput, playerY, playerX, hero);
-		handle_item(mapWindow, menuWindow, playerY, playerX, hero);
-		break;
-	}
-
-	map.mark_visible(playerY, playerX, hero);
-	map.render(mapWindow, mapRow, mapCol); // this will render plain terrain!
-	// render player, if needed
-	render_player(mapWindow, playerY, playerX);
-
-	curGrov = map.mapGetter(cursorRow + mapRow, cursorCol + mapCol); 
-	menu.update(&curGrov, &hero);
-	menu.render(menuWindow);
-
-	wmove(mapWindow, cursorRow, cursorCol);
-	wnoutrefresh(menuWindow);
+  switch(userInput)
+  {
+    case KEY_LEFT:
+    moveLeft();
+    break;
+    case KEY_RIGHT:
+    moveRight();
+    break;
+    case KEY_UP:
+    moveUp();
+    break;
+    case KEY_DOWN:
+    moveDown();
+    break;
+    default:
+    map.player_move(userInput, playerY, playerX, hero);
+    handle_item(mapWindow, menuWindow, playerY, playerX, hero);
+    break;
   }
 
-  delwin(mapWindow);	
+  map.mark_visible(playerY, playerX, hero);
+  map.render(mapWindow, mapRow, mapCol); // this will render plain terrain!
+  // render player, if needed
+  render_player(mapWindow, playerY, playerX);
+
+  curGrov = map.mapGetter(cursorRow + mapRow, cursorCol + mapCol); 
+  menu.update(&curGrov, &hero);
+  menu.render(menuWindow);
+
+  wmove(mapWindow, cursorRow, cursorCol);
+  wnoutrefresh(menuWindow);
+  }
+
+  delwin(mapWindow);  
   delwin(menuWindow);
 
   if(hero.is_dead())
@@ -160,44 +160,44 @@ void Game::play(bool debug)
 void Game::setWindowLocation(int playerY, int playerX)
 {
   if (playerY < mapWindowRows)
-	{
-	  mapRow = 0;
-	}
-	else if (playerY >= 127 - mapWindowRows)
-	{
-	  mapRow = 127 - mapWindowRows;
-	}
-	else
-	{
-	  // else, center vertically
-	  mapRow = playerY - (mapWindowRows / 2);
-	}
+  {
+    mapRow = 0;
+  }
+  else if (playerY >= 127 - mapWindowRows)
+  {
+    mapRow = 127 - mapWindowRows;
+  }
+  else
+  {
+    // else, center vertically
+    mapRow = playerY - (mapWindowRows / 2);
+  }
 
-	// calculate x
-	if (playerX < mapWindowCols)
-	{
-	  mapCol = 0;
-	}
-	else if (playerX >= 127 - mapWindowCols)
-	{
-	  mapRow = 127 - mapWindowCols;
-	}
-	else
-	{
-	  mapCol = playerX - (mapWindowCols / 2);
-	}
+  // calculate x
+  if (playerX < mapWindowCols)
+  {
+    mapCol = 0;
+  }
+  else if (playerX >= 127 - mapWindowCols)
+  {
+    mapRow = 127 - mapWindowCols;
+  }
+  else
+  {
+    mapCol = playerX - (mapWindowCols / 2);
+  }
 }
 
 void Game::setColors()
 {
   start_color();
-	init_pair(MEADOW_PAIR, COLOR_BLACK, COLOR_GREEN);
-	init_pair(WATER_PAIR, COLOR_BLACK, COLOR_BLUE);
-	init_pair(SWAMP_PAIR, COLOR_BLACK, COLOR_MAGENTA);
-	init_pair(WALL_PAIR, COLOR_BLACK, COLOR_WHITE);
-	init_pair(EMPTY_PAIR, COLOR_WHITE, COLOR_BLACK);
-	init_pair(PLAYER_PAIR, COLOR_YELLOW, COLOR_RED);
-	init_pair(DIAMOND_PAIR, COLOR_WHITE, COLOR_CYAN);
+  init_pair(MEADOW_PAIR, COLOR_BLACK, COLOR_GREEN);
+  init_pair(WATER_PAIR, COLOR_BLACK, COLOR_BLUE);
+  init_pair(SWAMP_PAIR, COLOR_BLACK, COLOR_MAGENTA);
+  init_pair(WALL_PAIR, COLOR_BLACK, COLOR_WHITE);
+  init_pair(EMPTY_PAIR, COLOR_WHITE, COLOR_BLACK);
+  init_pair(PLAYER_PAIR, COLOR_YELLOW, COLOR_RED);
+  init_pair(DIAMOND_PAIR, COLOR_WHITE, COLOR_CYAN);
 }
 
 void Game::moveLeft()
@@ -310,7 +310,7 @@ void Game::render_player(WINDOW * & map_window, int player_row, int player_col)
  * Handles item location based on the item at the current grovnik
  */
 void Game::handle_item(WINDOW* mapWindow, WINDOW* menuWindow, int player_row, int player_col, Player& hero)
-{	
+{ 
   bool destroy = false;
   bool use = false;
   bool ax = false; // used for detemine axe use
@@ -353,7 +353,7 @@ void Game::handle_item(WINDOW* mapWindow, WINDOW* menuWindow, int player_row, in
       if(destroy && (a->get_cost() < hero.ret_whiffle()))
       {
         hero.remove_whiffle(a -> get_cost());
-	      hero.pickup_axe();
+        hero.pickup_axe();
       }
       else
         destroy = false;
@@ -371,7 +371,7 @@ void Game::handle_item(WINDOW* mapWindow, WINDOW* menuWindow, int player_row, in
       if(destroy && (p->get_cost() < hero.ret_whiffle()))
       {
         hero.remove_whiffle(p -> get_cost());
-	      hero.pickup_pick_axe();
+        hero.pickup_pick_axe();
       }
       else
         destroy = false;

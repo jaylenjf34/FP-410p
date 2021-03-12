@@ -11,8 +11,8 @@
  */
 Item::Item(int _cost, std::string _name )
 {
-    cost = _cost;
-    name = _name;
+  cost = _cost;
+  name = _name;
 }
 
 /**
@@ -20,8 +20,8 @@ Item::Item(int _cost, std::string _name )
  */
 Item::Item(const Item & source)
 {
-    cost = source.cost;
-    name = source.name;
+  cost = source.cost;
+  name = source.name;
 }
 
 /**
@@ -58,7 +58,7 @@ int Item::get_cost()
 Food::Food(int _cost, std::string _name, int _energy_value)
      :Item(_cost, _name)
 {
-    energy_value = _energy_value;
+  energy_value = _energy_value;
 }
 
 /**
@@ -66,7 +66,7 @@ Food::Food(int _cost, std::string _name, int _energy_value)
  */
 Food::Food(const Food & source): Item(source)
 {
-    energy_value = source.energy_value;
+  energy_value = source.energy_value;
 }
 
 /**

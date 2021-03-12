@@ -77,11 +77,11 @@ bool Pack :: has_binoculars()
 // Set initial values for the Player
 Player :: Player (int e, int w, bool a, int a_t, int g)
 {
-	energy = e;
-	whiffle = w;
-	curr_grov = g;
-	ship = false;
-	diamonds = 0;
+  energy = e;
+  whiffle = w;
+  curr_grov = g;
+  ship = false;
+  diamonds = 0;
 }
 
 /**
@@ -91,10 +91,10 @@ Player :: Player (int e, int w, bool a, int a_t, int g)
  */
 bool Player :: is_dead ()
 {
-	if(energy <= 0) // Player is dead
-		return true;
-	else
-		return false;
+  if(energy <= 0) // Player is dead
+    return true;
+  else
+    return false;
 }
 
 /**
@@ -105,36 +105,35 @@ bool Player :: is_dead ()
  */
 bool Player::handle_movement(char terrain)
 {
-	switch (terrain)
-	{
-		case '0':  // handle meadow
-			remove_energy(1);
-			return true;
-			break;
-		case '1': // handle water
-			if (ship)
-			{
-				return true;
-			}
-			else
-			{
-				remove_energy(1);
-				return false;
-			}
-			break;
-		case '2': // handle swamp
-			remove_energy(2);
-			return true;
-			break;
-		case '3':  // handle wall
-			remove_energy(1);
-			return false;
-			break;
-		default:
-			// TODO: implement error handling
-			return false;
-	}	
-} 
+  switch (terrain)
+  {
+    case '0':  // handle meadow
+      remove_energy(1);
+      return true;
+      break;
+    case '1': // handle water
+      if (ship)
+      {
+        return true;
+      }
+      else
+      {
+        remove_energy(1);
+        return false;
+      }
+      break;
+    case '2': // handle swamp
+      remove_energy(2);
+      return true;
+      break;
+    case '3':  // handle wall
+      remove_energy(1);
+      return false;
+      break;
+    default:
+      return false;
+  }
+}
 
 
 /**
@@ -144,7 +143,7 @@ bool Player::handle_movement(char terrain)
  */
 bool Player :: has_axe()
 {
-	return MyPack.has_axe();
+  return MyPack.has_axe();
 }
 
 /**
@@ -154,8 +153,8 @@ bool Player :: has_axe()
  */
 int Player :: pickup_axe()
 {
-	MyPack.add_axe();
-	return 1;
+  MyPack.add_axe();
+  return 1;
 }
 
 /**
@@ -167,10 +166,10 @@ int Player :: pickup_axe()
  */
 int Player :: use_axe(int e_used, int div)
 {
-	e_used = e_used / div; // calculate energy to remove
-	remove_energy(e_used); // remove energy from axe use
-	MyPack.use_axe();
-	return 1;
+  e_used = e_used / div; // calculate energy to remove
+  remove_energy(e_used); // remove energy from axe use
+  MyPack.use_axe();
+  return 1;
 }
 
 /**
@@ -190,8 +189,8 @@ bool Player :: has_pick_axe()
  */
 int Player :: pickup_pick_axe()
 {
-	MyPack.add_pickaxe();
-	return 1;
+  MyPack.add_pickaxe();
+  return 1;
 }
 
 /**
@@ -203,10 +202,10 @@ int Player :: pickup_pick_axe()
  */
 int Player :: use_pick_axe(int e_used, int div)
 {
-	e_used = e_used / div;
-	remove_energy(e_used);
-	MyPack.use_pickaxe();
-	return 1;
+  e_used = e_used / div;
+  remove_energy(e_used);
+  MyPack.use_pickaxe();
+  return 1;
 }
 
 /**
@@ -216,7 +215,7 @@ int Player :: use_pick_axe(int e_used, int div)
  */
 int Player :: ret_energy()
 {
-	return energy;
+  return energy;
 }
 
 /**
@@ -227,8 +226,8 @@ int Player :: ret_energy()
  */
 int Player :: add_energy(int val)
 {
-	energy += val;
-	return 1;
+  energy += val;
+  return 1;
 }
 
 /**
@@ -239,14 +238,14 @@ int Player :: add_energy(int val)
  */
 int Player :: remove_energy(int val)
 {
-	energy -= val;
+  energy -= val;
 
-	if(energy <= 0)
-	{
-		energy = 0;
-	}
+  if(energy <= 0)
+  {
+    energy = 0;
+  }
 
-	return 1;
+  return 1;
 }
 
 /**
@@ -256,7 +255,7 @@ int Player :: remove_energy(int val)
  */
 int Player :: ret_whiffle()
 {
-	return whiffle;
+  return whiffle;
 }
 
 /**
@@ -267,8 +266,8 @@ int Player :: ret_whiffle()
  */
 int Player :: add_whiffle( int val)
 { 
-	whiffle += val; 
-	return 1;
+  whiffle += val; 
+  return 1;
 }
 
 /**
@@ -279,14 +278,14 @@ int Player :: add_whiffle( int val)
  */
 int Player :: remove_whiffle (int val)
 {
-	whiffle -= val;
+  whiffle -= val;
 
-	if(whiffle <=  0)
-	{
-		whiffle = 0;
-	}
+  if(whiffle <=  0)
+  {
+    whiffle = 0;
+  }
 
-	return 1;
+  return 1;
 }
 
 /**
@@ -297,8 +296,8 @@ int Player :: remove_whiffle (int val)
  */
 int Player :: change_grovnik(int grov_type)
 {
-	curr_grov = grov_type;
-	return 1;
+  curr_grov = grov_type;
+  return 1;
 }
 
 /**
@@ -308,7 +307,7 @@ int Player :: change_grovnik(int grov_type)
  */
 int Player :: ret_grovnik()
 {
-	return curr_grov;
+  return curr_grov;
 }
 
 /**
@@ -318,7 +317,7 @@ int Player :: ret_grovnik()
  */
 bool Player :: has_ship()
 {
-	return ship;
+  return ship;
 }
 
 /**
@@ -328,8 +327,8 @@ bool Player :: has_ship()
  */
 int Player :: add_ship()
 {
-	ship = true;
-	return 1;
+  ship = true;
+  return 1;
 }
 
 
@@ -340,8 +339,8 @@ int Player :: add_ship()
  */
 int Player :: add_diamonds()
 {
-	++diamonds;
-	return 1;
+  ++diamonds;
+  return 1;
 }
 
 /**
@@ -351,7 +350,7 @@ int Player :: add_diamonds()
  */
 int Player :: ret_diamonds()
 {
-	return diamonds;
+  return diamonds;
 }
 
 /**
@@ -361,7 +360,7 @@ int Player :: ret_diamonds()
  */
 bool Player :: has_binoculars()
 {
-	return MyPack.has_binoculars();
+  return MyPack.has_binoculars();
 }
 
 /**
@@ -371,7 +370,7 @@ bool Player :: has_binoculars()
  */
 int Player :: add_binoculars()
 {
-	MyPack.add_binoculars();
-	return 1;
+  MyPack.add_binoculars();
+  return 1;
 }
 

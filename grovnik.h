@@ -4,26 +4,26 @@
  */
 struct Grovnik
 {
-	Grovnik();
-  	~Grovnik();
-  	char terrain;
-  	/*
-   	* Meadow: 0
-   	* Water: 1
-   	* Swamp: 2
-   	* Wall: 3
-   	*/
+  Grovnik();
+  ~Grovnik();
+  char terrain;
+  /*
+  * Meadow: 0
+  * Water: 1
+  * Swamp: 2
+  * Wall: 3
+  */
 
-  	char object;
-  	/*
-   	* Nothing: N
-   	* Diamond: D
-   	* Player: @
-   	* Ship: S
-   	* Food: F
-   	*/
+  char object;
+  /*
+  * Nothing: N
+  * Diamond: D
+  * Player: @
+  * Ship: S
+  * Food: F
+  */
 
-  	bool visible;
+  bool visible;
 
-  	class Item * item;
+  class Item * item;
 };
