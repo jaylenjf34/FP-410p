@@ -53,6 +53,10 @@ class Game
         int mapCol;
 
         void setWindowLocation(int, int);
+        void moveLeft();
+        void moveRight();
+        void moveUp();
+        void moveDown();
 
 
 	//strings for win screens/death screens

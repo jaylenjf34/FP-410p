@@ -97,9 +97,8 @@ void Game::play(bool debug)
 	getmaxyx(mapWindow, mapWindowRows, mapWindowCols);
 	setWindowLocation(playerY, playerX);
 
-	// Render map, player, and menu when the game starts up
 	map.mark_visible(playerY, playerX, hero);
-	map.render(mapWindow, mapRow, mapCol); // this will render plain terrain!
+	map.render(mapWindow, mapRow, mapCol); // renders plain terrain
 	render_player(mapWindow, playerY, playerX);
 	wmove(mapWindow, cursorRow, cursorCol);
 
@@ -108,54 +107,27 @@ void Game::play(bool debug)
 	menu.render(menuWindow);
 
 	int userInput = 0;
-
-	while (userInput != 'q' && !hero.is_dead() && hero.ret_diamonds() < 4) // Runs until 'q' is entered or hero is dead
+	while (userInput != 'q' && !hero.is_dead() && hero.ret_diamonds() < 4)
 	{
 		userInput = wgetch(mapWindow); // Gets character
 		switch(userInput)
 		{
 			case KEY_LEFT:
-				if (cursorCol == 0) // check if window position is zero. If true, you are at the left edge of map and can't move
-				{
-					if (mapCol != 0)
-						--mapCol; // shift the window left across the array
-				}
-				else
-					--cursorCol; // otherwise, just decrement the cursor
+				moveLeft();
 				break;
 			case KEY_RIGHT:
-				if(cursorCol == mapWindowCols - 1)
-				{
-					if (mapCol != 128 - mapWindowCols) // can move right
-						++mapCol;
-				}
-				else
-					++cursorCol;
+				moveRight();
 				break;
 			case KEY_UP:
-				if (cursorRow == 0)
-				{
-					if (mapRow != 0) // can move up
-						--mapRow;
-				}
-				else
-					--cursorRow; // decrement cursor
+				moveUp();
 				break;
 			case KEY_DOWN:
-				if (cursorRow == mapWindowRows - 1)
-				{
-					if (mapRow != 128 - mapWindowRows) // can move down
-						++mapRow;
-				}
-				else
-					++cursorRow;
+				moveDown();
 				break;
 			default:
 				map.player_move(userInput, playerY, playerX, hero);
 				handle_item(mapWindow, menuWindow, playerY, playerX, hero);
-
 				break;
-        
 		}
 
 		map.mark_visible(playerY, playerX, hero);
@@ -252,6 +224,40 @@ void Game::setWindowLocation(int playerY, int playerX)
 	{
 		mapCol = playerX - (mapWindowCols / 2);
 	}
+}
+
+void Game::moveLeft()
+{
+  // check if window position is zero. If true, you are at the left edge of map and can't move
+  if (cursorCol == 0 && mapCol != 0)
+    --mapCol; // shift the window left across the array
+  else
+    --cursorCol; // otherwise, just decrement the cursor
+}
+
+void Game::moveRight()
+{
+  // Check if can move right
+  if(cursorCol == mapWindowCols - 1 && mapCol != 128 - mapWindowCols)
+    ++mapCol;
+  else
+    ++cursorCol;
+}
+
+void Game::moveUp()
+{
+  if (cursorRow == 0 && mapRow != 0)
+    --mapRow;
+  else
+    --cursorRow; // decrement cursor
+}
+
+void Game::moveDown()
+{
+  if (cursorRow == mapWindowRows - 1 && mapRow != 128 - mapWindowRows)
+    ++mapRow;
+  else
+    ++cursorRow;
 }
 
 /**
