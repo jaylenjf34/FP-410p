@@ -150,23 +150,11 @@ void Game::play(bool debug)
   {
     displayDeathScreen();
   }
-
   else if(hero.ret_diamonds() == 4)
   {
-    // Create Win Screen
-    WINDOW * winWindow = newwin(min(LINES, 148), min(COLS, 148), 0, 0);
-    getmaxyx(winWindow, mapWindowRows, mapWindowCols); // Now that both windows are gone, we can reuse mapWindowRows/Cols
-    // Print text in center of screen
-    mvprintw((mapWindowRows / 2) - 2, (mapWindowCols -strlen(win_statement)) / 2, win_statement);
-    mvprintw((mapWindowRows / 2) - 1, (mapWindowCols - strlen(win_statement_two)) / 2, win_statement_two);
-    mvprintw((mapWindowRows / 2), (mapWindowCols - strlen(win_statement_three)) / 2, win_statement_three);
-    mvprintw((mapWindowRows / 2) + 1, (mapWindowCols - strlen(win_statement_four)) / 2, win_statement_four);
-    while (userInput != 'q') // Runs until 'q' is entered or hero is dead
-    {
-      userInput = getch(); // Gets character
-    }
-    delwin(winWindow); // clears win screen
+    displayWinScreen();
   }
+  
 	endwin(); // Ends ncurses
 	return;
 }
@@ -265,6 +253,24 @@ void Game::displayDeathScreen()
   delwin(deathWindow); // clears death screen
 }
 
+void Game::displayWinScreen()
+{
+  int userInput = 0;
+
+  // Create Win Screen
+  WINDOW * winWindow = newwin(min(LINES, 148), min(COLS, 148), 0, 0);
+  getmaxyx(winWindow, mapWindowRows, mapWindowCols); // Now that both windows are gone, we can reuse mapWindowRows/Cols
+  // Print text in center of screen
+  mvprintw((mapWindowRows / 2) - 2, (mapWindowCols -strlen(win_statement)) / 2, win_statement);
+  mvprintw((mapWindowRows / 2) - 1, (mapWindowCols - strlen(win_statement_two)) / 2, win_statement_two);
+  mvprintw((mapWindowRows / 2), (mapWindowCols - strlen(win_statement_three)) / 2, win_statement_three);
+  mvprintw((mapWindowRows / 2) + 1, (mapWindowCols - strlen(win_statement_four)) / 2, win_statement_four);
+  while (userInput != 'q') // Runs until 'q' is entered or hero is dead
+  {
+    userInput = getch(); // Gets character
+  }
+  delwin(winWindow); // clears win screen
+}
 
 /**
  * Render player

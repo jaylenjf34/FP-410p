@@ -59,6 +59,7 @@ class Game
         void moveDown();
 
         void displayDeathScreen();
+        void displayWinScreen();
 
         //strings for win screens/death screens
         char lose_statement  [28]  = "You have run out of energy.";
